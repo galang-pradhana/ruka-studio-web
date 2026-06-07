@@ -93,11 +93,11 @@ export function CreateExpenseDialog({ projectId }: { projectId: string }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="rounded-full" />}>
+      <DialogTrigger render={<Button variant="outline" className="rounded-none" />}>
         <Plus className="w-4 h-4 mr-2" />
         Tambah Pengeluaran
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-[32px]">
+      <DialogContent className="sm:max-w-[425px] rounded-none">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Catat Pengeluaran</DialogTitle>
@@ -157,7 +157,7 @@ export function CreateExpenseDialog({ projectId }: { projectId: string }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" disabled={loading} className="w-full rounded-full">
+            <Button type="submit" disabled={loading} className="w-full rounded-none">
               {loading ? "Menyimpan..." : "Simpan Pengeluaran"}
             </Button>
           </DialogFooter>

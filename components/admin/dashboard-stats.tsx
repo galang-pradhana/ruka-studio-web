@@ -73,7 +73,7 @@ export async function DashboardStats() {
             style={{
               backgroundColor: "#FFFFFF",
               border: "1px solid #E8E2DD",
-              borderRadius: "2px",
+              borderRadius: "0px",
               padding: "20px 24px",
             }}
           >
@@ -93,7 +93,7 @@ export async function DashboardStats() {
                 className="flex items-center justify-center w-8 h-8 flex-shrink-0"
                 style={{
                   backgroundColor: stat.iconBg,
-                  borderRadius: "2px",
+                  borderRadius: "0px",
                 }}
               >
                 <Icon size={16} style={{ color: stat.iconColor }} />

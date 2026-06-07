@@ -74,10 +74,10 @@ export function CreateTermDialog({ projectId }: CreateTermDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="rounded-full font-medium px-4 bg-white border-border hover:bg-secondary" />}>
+      <DialogTrigger render={<Button variant="outline" className="rounded-none font-medium px-4 bg-white border-border hover:bg-secondary" />}>
         <Plus className="mr-2 h-4 w-4" /> Tambah Termin
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-[28px] border-none bg-white/80 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[425px] rounded-none border-none bg-white/80 backdrop-blur-xl shadow-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-tight text-foreground text-center mb-4">
             Termin Pembayaran Baru
@@ -86,12 +86,12 @@ export function CreateTermDialog({ projectId }: CreateTermDialogProps) {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="termName" className="text-foreground font-medium">Nama Termin</Label>
-            <Input id="termName" name="termName" required className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: DP 30% atau Termin 1" />
+            <Input id="termName" name="termName" required className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: DP 30% atau Termin 1" />
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="percentage" className="text-foreground font-medium">Persentase (%) (Opsional)</Label>
-            <Input id="percentage" name="percentage" type="number" min="0" max="100" step="0.01" className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: 30" />
+            <Input id="percentage" name="percentage" type="number" min="0" max="100" step="0.01" className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: 30" />
           </div>
 
           <div className="space-y-2">
@@ -101,14 +101,14 @@ export function CreateTermDialog({ projectId }: CreateTermDialogProps) {
               value={amountFormatted}
               onChange={handleCurrencyChange}
               required
-              className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
+              className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
               placeholder="Rp 0" 
             />
             {/* Hidden field for actual raw value */}
             <input type="hidden" name="amount" value={amountRaw} />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
+          <Button type="submit" disabled={loading} className="w-full rounded-none bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
             {loading ? "Menyimpan..." : "Simpan Termin"}
           </Button>
         </form>

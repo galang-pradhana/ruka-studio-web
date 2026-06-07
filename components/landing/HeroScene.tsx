@@ -152,7 +152,7 @@ export default function HeroScene({ scrollProgress, heroScrollProgress, lang, ac
           labelEN: "STRUCTURAL MASSING",
           labelID: "STRUKTUR & TEKTONIKA",
           valEN: "Cantilevered reinforced concrete floor plates anchored into volcanic basalt cliffs.",
-          valID: "Kantilever pelat beton bertulang yang baji terjangkar murni ke dnding basalt vulkanik curam."
+          valID: "Kantilever pelat beton bertulang yang baji terjangkar murni ke dinding basalt vulkanik curam."
         },
         {
           labelEN: "CRAFT & CHADDING / FINISH",
@@ -360,7 +360,7 @@ export default function HeroScene({ scrollProgress, heroScrollProgress, lang, ac
                 {/* Dynamic mobile project highlight card */}
                 <div 
                   key={activeBgIndex}
-                  className="glass p-3.5 bg-black/50 border border-white/10 rounded-none transition-all duration-500 ease-out text-center"
+                  className="glass p-3.5 bg-black/70 backdrop-blur-md border border-white/10 rounded-none transition-all duration-500 ease-out text-center"
                 >
                   <div className="font-mono text-[8px] tracking-[0.2em] text-[#A4855C] uppercase mb-0.5">
                     {currentProject.code} &nbsp;•&nbsp; {activeLocation}
@@ -368,7 +368,7 @@ export default function HeroScene({ scrollProgress, heroScrollProgress, lang, ac
                   <h3 className="font-serif text-[12px] text-white tracking-wider uppercase mb-1 font-semibold">
                     {activeTitle}
                   </h3>
-                  <p className="font-sans text-[11px] leading-relaxed text-white/80 max-w-[270px] mx-auto line-clamp-3">
+                  <p className="font-sans text-[11px] leading-relaxed text-white/90 max-w-[270px] mx-auto pb-1">
                     {activeDesc}
                   </p>
                 </div>

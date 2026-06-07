@@ -38,12 +38,12 @@ export async function RecentProjects() {
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E8E2DD",
-          borderRadius: "2px",
+          borderRadius: "0px",
         }}
       >
         <div
           className="w-10 h-10 flex items-center justify-center mb-3"
-          style={{ backgroundColor: "#F4EFEB", borderRadius: "2px" }}
+          style={{ backgroundColor: "#F4EFEB", borderRadius: "0px" }}
         >
           <svg
             width="20"
@@ -72,7 +72,7 @@ export async function RecentProjects() {
       style={{
         backgroundColor: "#FFFFFF",
         border: "1px solid #E8E2DD",
-        borderRadius: "2px",
+        borderRadius: "0px",
         overflow: "hidden",
       }}
     >
@@ -172,7 +172,7 @@ export async function RecentProjects() {
                       style={{
                         backgroundColor: statusInfo.bg,
                         color: statusInfo.color,
-                        borderRadius: "2px",
+                        borderRadius: "0px",
                         fontSize: "11px",
                         fontWeight: 600,
                         letterSpacing: "0.02em",

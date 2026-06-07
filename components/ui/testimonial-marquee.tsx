@@ -99,7 +99,7 @@ const TestimonialCard = React.memo(({ item, variant = "default" }: { item: Testi
                     </p>
 
                     <div className="flex items-center gap-3 pt-2">
-                        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-border">
+                        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-none border border-border">
                             <img src={item.avatar} alt={item.name} className="h-full w-full object-cover" loading="eager" />
                         </div>
                         <div className="flex flex-col">
@@ -118,7 +118,7 @@ const TestimonialCard = React.memo(({ item, variant = "default" }: { item: Testi
     }
 
     return (
-        <div className="relative group flex h-auto w-[350px] shrink-0 flex-col justify-between overflow-hidden rounded-2xl border border-border bg-black/5 dark:bg-white/5 p-6 transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transform-gpu [backface-visibility:hidden]">
+        <div className="relative group flex h-auto w-[350px] shrink-0 flex-col justify-between overflow-hidden rounded-none border border-border bg-black/5 dark:bg-white/5 p-6 transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transform-gpu [backface-visibility:hidden]">
             <div className="absolute inset-0 bg-gradient-to-br from-black/5 dark:from-white/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
             <div className="relative z-10 flex flex-col gap-4">
@@ -127,7 +127,7 @@ const TestimonialCard = React.memo(({ item, variant = "default" }: { item: Testi
                 </p>
 
                 <div className="flex items-center gap-3 pt-2">
-                    <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-border">
+                    <div className="h-10 w-10 shrink-0 overflow-hidden rounded-none border border-border">
                         <img src={item.avatar} alt={item.name} className="h-full w-full object-cover" loading="eager" />
                     </div>
                     <div className="flex flex-col">
@@ -153,8 +153,8 @@ export function TestimonialMarquee({ items, variant = "default", className, spee
     const itemsToDisplay = React.useMemo(() => {
         let result = [...items]
         // Ensure we have enough items to fill the width for smooth animation
-        // 10 items is a safe heuristic for most screen sizes with 350px cards
-        while (result.length < 10) {
+        // 6 items is a safe heuristic for most screen sizes with 350px cards
+        while (result.length < 6) {
             result = [...result, ...items]
         }
         return result

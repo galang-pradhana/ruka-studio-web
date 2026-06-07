@@ -16,7 +16,7 @@ function StatsSkeleton() {
           style={{
             backgroundColor: "#FFFFFF",
             border: "1px solid #E8E2DD",
-            borderRadius: "2px",
+            borderRadius: "0px",
             padding: "20px 24px",
             height: "108px",
           }}
@@ -33,7 +33,7 @@ function TableSkeleton() {
       style={{
         backgroundColor: "#FFFFFF",
         border: "1px solid #E8E2DD",
-        borderRadius: "2px",
+        borderRadius: "0px",
         height: "280px",
       }}
     />

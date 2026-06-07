@@ -132,7 +132,7 @@ export default async function ProjectsPage() {
                     </TableCell>
                     
                     <TableCell className="align-middle text-gray-500 text-[13px]">
-                      <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs font-medium">
+                      <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-none text-xs font-medium">
                         {getModeLabel(project.mode)}
                       </span>
                     </TableCell>
@@ -152,7 +152,7 @@ export default async function ProjectsPage() {
                     </TableCell>
                     
                     <TableCell className="align-middle text-center">
-                      <span className={`inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded ${getStatusBadge(project.status)}`}>
+                      <span className={`inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded-none ${getStatusBadge(project.status)}`}>
                         {getStatusLabel(project.status)}
                       </span>
                     </TableCell>

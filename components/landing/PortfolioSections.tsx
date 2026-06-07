@@ -271,7 +271,7 @@ export default function PortfolioSections({ scrollProgress, lang, activeBgIndex,
           </div>
 
           {/* Right materials layout card */}
-          <div className="md:col-span-6 bg-white/95 border border-[#0B2240]/10 shadow-[0_12px_40px_rgba(11,34,64,0.06)] p-6 md:p-8 rounded-[28px] space-y-6">
+          <div className="md:col-span-6 bg-white/95 border border-[#0B2240]/10 shadow-[0_12px_40px_rgba(11,34,64,0.06)] p-6 md:p-8 rounded-none space-y-6">
             <h3 className="font-serif text-[13px] text-[#0B2240] tracking-widest uppercase border-b border-[#0B2240]/10 pb-3 flex items-center justify-between text-left">
               <span>{t.philosophy.matTitle}</span>
               <span className="font-mono text-[9px] text-[#0B2240]/40">01 / L</span>

@@ -210,20 +210,20 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
                   >
                     <a
                       href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio"
-                      className="rounded-full bg-black text-white hover:bg-[#A4855C] hover:text-[#0B2240] px-[22px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 uppercase flex items-center gap-2 border border-white/20 shadow-md transform hover:scale-[1.02]"
+                      className="rounded-none bg-black text-white hover:bg-[#A4855C] hover:text-[#0B2240] px-[22px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 uppercase flex items-center gap-2 border border-white/20 shadow-md transform hover:scale-[1.02]"
                     >
                       <span>{t.navContact}</span>
                       <span className="text-[12px] opacity-75">∘</span>
                     </a>
                     <button
                       onClick={() => setIsMenuOpen(true)}
-                      className="rounded-full bg-[#EFECE6]/95 hover:bg-[#e4dfd5] border border-[#0B2240]/10 px-[24px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] text-[#0B2240] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02]"
+                      className="rounded-none bg-[#EFECE6]/95 hover:bg-[#e4dfd5] border border-[#0B2240]/10 px-[24px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] text-[#0B2240] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02]"
                     >
                       MENU
                     </button>
                     <button
                       onClick={() => onLanguageChange(lang === 'EN' ? 'ID' : 'EN')}
-                      className={`rounded-full px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02] flex items-center justify-center min-w-[50px] border ${
+                      className={`rounded-none px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02] flex items-center justify-center min-w-[50px] border ${
                         isLightBg 
                           ? 'bg-[#EFECE6]/95 hover:bg-[#e4dfd5] border-[#0B2240]/10 text-[#0B2240]' 
                           : 'bg-black hover:bg-[#A4855C] border-white/20 text-white hover:text-[#0B2240]'
@@ -238,14 +238,14 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
                     <a
                       href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio"
                       id="nav-get-in-touch"
-                      className="rounded-full bg-black hover:bg-[#A4855C] hover:text-[#0B2240] px-[22px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 uppercase flex items-center gap-2 border border-white/20 select-none cursor-pointer shadow-md transform hover:scale-[1.02]"
+                      className="rounded-none bg-black hover:bg-[#A4855C] hover:text-[#0B2240] px-[22px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 uppercase flex items-center gap-2 border border-white/20 select-none cursor-pointer shadow-md transform hover:scale-[1.02]"
                     >
                       <span>{t.navContact}</span>
                       <span className="text-[12px] opacity-75">∘</span>
                     </a>
                     <button
                       onClick={() => onLanguageChange(lang === 'EN' ? 'ID' : 'EN')}
-                      className={`rounded-full px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02] flex items-center justify-center min-w-[50px] border ${
+                      className={`rounded-none px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm hover:scale-[1.02] flex items-center justify-center min-w-[50px] border ${
                         isLightBg 
                           ? 'bg-[#EFECE6]/95 hover:bg-[#e4dfd5] border-[#0B2240]/10 text-[#0B2240]' 
                           : 'bg-black hover:bg-[#A4855C] border-white/20 text-white hover:text-[#0B2240]'
@@ -271,7 +271,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => onLanguageChange(lang === 'EN' ? 'ID' : 'EN')}
-                  className={`rounded-full px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm flex items-center justify-center min-w-[50px] border ${
+                  className={`rounded-none px-[16px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm flex items-center justify-center min-w-[50px] border ${
                     isLightBg 
                       ? 'bg-[#EFECE6]/95 border-[#0B2240]/10 text-[#0B2240]' 
                       : 'bg-black border-white/20 text-white'
@@ -281,7 +281,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
                 </button>
                 <button
                   onClick={() => setIsMenuOpen(true)}
-                  className={`rounded-full px-5 py-2 text-[9px] font-sans font-bold tracking-[0.16em] transition-all duration-300 cursor-pointer uppercase border ${
+                  className={`rounded-none px-5 py-2 text-[9px] font-sans font-bold tracking-[0.16em] transition-all duration-300 cursor-pointer uppercase border ${
                     isLightBg
                       ? 'bg-[#EFECE6]/95 text-[#0B2240] border-[#0B2240]/10 hover:bg-[#e4dfd5]'
                       : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
@@ -312,7 +312,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
               </span>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/15 px-[20px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] text-white cursor-pointer uppercase flex items-center gap-2"
+                className="rounded-none bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/15 px-[20px] py-2.5 text-[9.5px] font-sans font-bold tracking-[0.18em] text-white cursor-pointer uppercase flex items-center gap-2"
               >
                 <span>CLOSE</span>
                 <span className="text-[12px] opacity-75">✕</span>
@@ -374,7 +374,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
                 </span>
                 <button
                   onClick={() => onLanguageChange(lang === 'EN' ? 'ID' : 'EN')}
-                  className="rounded-full px-[20px] py-3 text-[11px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm flex items-center justify-center min-w-[60px] border bg-black border-white/20 text-white hover:bg-[#A4855C] hover:text-[#0B2240]"
+                  className="rounded-none px-[20px] py-3 text-[11px] font-sans font-bold tracking-[0.18em] transition-all duration-300 cursor-pointer uppercase shadow-sm flex items-center justify-center min-w-[60px] border bg-black border-white/20 text-white hover:bg-[#A4855C] hover:text-[#0B2240]"
                 >
                   {lang === 'EN' ? 'EN' : 'ID'}
                 </button>
@@ -383,7 +383,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
               <div className="flex flex-col md:items-end gap-3 select-none w-full md:w-auto">
                 <a
                   href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio"
-                  className="rounded-full bg-[#A4855C] hover:bg-white text-black text-center px-7 py-3 text-[10px] font-sans font-bold tracking-[0.16em] transition-all duration-300 uppercase flex items-center justify-center gap-2"
+                  className="rounded-none bg-[#A4855C] hover:bg-white text-black text-center px-7 py-3 text-[10px] font-sans font-bold tracking-[0.16em] transition-all duration-300 uppercase flex items-center justify-center gap-2"
                 >
                   <span>{t.navContact}</span>
                   <span className="text-[12px] opacity-75">∘</span>

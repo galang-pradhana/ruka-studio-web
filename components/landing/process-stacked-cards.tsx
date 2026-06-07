@@ -82,11 +82,12 @@ const ProcessCard = ({
         style={{
           scale,
           top: `calc(10vh + ${i * 25}px)`,
+          zIndex: i * 10,
         }}
-        className="relative flex flex-col lg:flex-row w-[90vw] lg:w-[1000px] xl:w-[1100px] bg-[#FCFAF6] border border-[#0B2240]/15 shadow-[0_20px_40px_rgba(10,6,8,0.06)] origin-top overflow-hidden rounded-[24px]"
+        className="relative flex flex-col lg:flex-row w-full bg-[#FCFAF6] border-y border-[#0B2240]/10 shadow-[0_20px_40px_rgba(10,6,8,0.06)] origin-top overflow-hidden rounded-none"
       >
         {/* Content Side */}
-        <div className="w-full lg:w-[45%] p-8 md:p-12 lg:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#0B2240]/10 bg-[#FCFAF6]">
+        <div className="w-full lg:w-[45%] p-8 md:p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#0B2240]/10 bg-[#FCFAF6]">
           <span className="font-mono text-[10px] md:text-[12px] text-[#0B2240]/40 mb-6 block">
             ({stage.id})
           </span>
@@ -102,7 +103,7 @@ const ProcessCard = ({
         </div>
 
         {/* Image Side */}
-        <div className="w-full lg:w-[55%] h-[300px] lg:h-[500px] relative overflow-hidden bg-[#0B2240]/5">
+        <div className="w-full lg:w-[55%] h-[300px] lg:h-[550px] relative overflow-hidden bg-[#0B2240]/5">
           <img
             src={stage.src}
             alt={language === "ID" ? stage.titleID : stage.titleEN}

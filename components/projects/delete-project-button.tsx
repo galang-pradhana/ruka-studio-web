@@ -45,7 +45,7 @@ export function DeleteProjectButton({ projectId, projectName }: DeleteProjectBut
       <DialogTrigger render={<Button variant="outline" size="sm" className="rounded-none h-8 px-2 border-red-100 hover:bg-red-50 text-red-600 hover:text-red-700" />}>
         <Trash2 className="w-4 h-4" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[400px] rounded-[24px] border-none bg-white shadow-2xl p-6 sm:p-8">
+      <DialogContent className="sm:max-w-[400px] rounded-none border-none bg-white shadow-2xl p-6 sm:p-8">
         <DialogHeader className="space-y-3">
           <DialogTitle className="text-xl font-bold tracking-tight text-[#1A2530] text-center">
             Hapus Proyek?
@@ -60,7 +60,7 @@ export function DeleteProjectButton({ projectId, projectName }: DeleteProjectBut
             variant="outline"
             onClick={() => setOpen(false)}
             disabled={loading}
-            className="w-full sm:w-1/2 rounded-full border-gray-200 hover:bg-gray-50 font-medium h-11"
+            className="w-full sm:w-1/2 rounded-none border-gray-200 hover:bg-gray-50 font-medium h-11"
           >
             Batal
           </Button>
@@ -68,7 +68,7 @@ export function DeleteProjectButton({ projectId, projectName }: DeleteProjectBut
             type="button"
             onClick={handleDelete}
             disabled={loading}
-            className="w-full sm:w-1/2 rounded-full bg-red-600 hover:bg-red-700 text-white font-medium h-11 shadow-none"
+            className="w-full sm:w-1/2 rounded-none bg-red-600 hover:bg-red-700 text-white font-medium h-11 shadow-none"
           >
             {loading ? "Menghapus..." : "Ya, Hapus"}
           </Button>

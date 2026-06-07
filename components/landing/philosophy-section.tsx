@@ -21,18 +21,18 @@ export const PhilosophySection = ({ data = {} }: { data?: Record<string, string>
     : (data.philosophyEyebrowID || data.philosophyEyebrow || "Filosofi Desain");
 
   const sectionTitle = language === 'EN'
-    ? (data.philosophyTitleEN || "Shaping Space, Connecting Souls.")
-    : (data.philosophyTitleID || data.philosophyTitle || "Membentuk Ruang, Menghubungkan Jiwa.");
+    ? (data.philosophyTitleEN || "Designing Spaces, Building Homes.")
+    : (data.philosophyTitleID || data.philosophyTitle || "Merancang Ruang untuk Kehidupan yang Sebenarnya.");
 
   const sectionDescription = language === 'EN'
-    ? (data.philosophyDescEN || "Every project is a dialogue between material, light, and the life dwelling within. We believe architecture is not just building structures, but weaving timeless experiences.")
-    : (data.philosophyDescID || data.philosophyDesc || "Setiap proyek adalah dialog antara material, cahaya, dan kehidupan yang berdiam di dalamnya. Kami percaya arsitektur bukan sekadar membangun struktur, melainkan merangkai pengalaman yang tak lekang oleh waktu.");
+    ? (data.philosophyDescEN || "We believe a great home is more than just a building. It's about how natural light, honest materials, and smart design come together to make daily life better.")
+    : (data.philosophyDescID || data.philosophyDesc || "Kami percaya bahwa rumah yang baik bukan sekadar bangunan. Ini tentang bagaimana cahaya alami, material yang jujur, dan tata ruang yang cerdas menyatu untuk membuat hidup Anda lebih baik.");
 
   return (
     <section 
       ref={containerRef}
       id="philosophy"
-      className="relative flex items-center justify-center w-full min-h-[80vh] bg-[#0B2240] text-[#FCFAF6] overflow-hidden px-6 lg:px-20 py-32"
+      className="relative flex items-center justify-center w-full min-h-[80vh] bg-[#0B2240] text-[#FCFAF6] overflow-hidden px-6 lg:px-20 pt-32 pb-24 md:py-32"
     >
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
       

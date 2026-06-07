@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { LandingFooter } from "@/components/landing/footer";
-import { FloatingWhatsApp } from "@/components/landing/floating-wa";
 import { getAllContentMap } from "@/app/actions/content.actions";
 
 export const metadata: Metadata = {
@@ -54,8 +53,6 @@ export default async function PublicLayout({
       </div>
       {/* Global Footer — renders on all public pages including homepage */}
       <LandingFooter data={contactData} />
-      {/* Floating WhatsApp Button */}
-      <FloatingWhatsApp data={contactData} />
     </div>
   );
 }

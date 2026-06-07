@@ -20,7 +20,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Link href={`/admin/projects/${project.id}`} className="block relative group">
-      <div className={`relative h-full flex flex-col p-6 rounded-[28px] bg-card overflow-hidden transition-all duration-300 ${isActive ? 'shadow-sm' : ''} hover:scale-[1.02]`}>
+      <div className={`relative h-full flex flex-col p-6 rounded-none bg-card overflow-hidden transition-all duration-300 ${isActive ? 'shadow-sm' : ''} hover:scale-[1.02]`}>
         
         {isActive && (
           <BorderBeam 
@@ -34,10 +34,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
 
         <div className="flex justify-between items-start mb-4">
-          <Badge variant={isActive ? "default" : "secondary"} className="rounded-full px-3 font-medium bg-primary text-white">
+          <Badge variant={isActive ? "default" : "secondary"} className="rounded-none px-3 font-medium bg-primary text-white">
             {project.status}
           </Badge>
-          <Badge variant="outline" className="rounded-full px-3 text-muted-foreground border-border bg-background">
+          <Badge variant="outline" className="rounded-none px-3 text-muted-foreground border-border bg-background">
             {project.mode === "FULL_CONTRACTOR" ? "Full Contractor" : "Consultation"}
           </Badge>
         </div>

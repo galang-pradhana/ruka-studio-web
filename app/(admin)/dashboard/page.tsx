@@ -29,7 +29,7 @@ export default async function DashboardPage() {
       <DashboardStats />
 
       <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white rounded-[32px] p-8 border border-border shadow-sm">
+        <div className="bg-white rounded-none p-8 border border-border shadow-sm">
           <h3 className="font-bold text-lg mb-6 tracking-tight">Ringkasan Arus Kas</h3>
           <div className="flex flex-col space-y-6">
             <div>
@@ -39,9 +39,9 @@ export default async function DashboardPage() {
                   Rp {(stats.totalIncome / 1000000).toFixed(1)} Jt
                 </span>
               </div>
-              <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-none h-3 overflow-hidden">
                 <div 
-                  className="bg-emerald-500 h-full rounded-full transition-all duration-1000" 
+                  className="bg-emerald-500 h-full rounded-none transition-all duration-1000" 
                   style={{ width: stats.totalIncome > 0 ? '100%' : '0%' }}
                 />
               </div>
@@ -54,9 +54,9 @@ export default async function DashboardPage() {
                   Rp {(stats.totalExpense / 1000000).toFixed(1)} Jt
                 </span>
               </div>
-              <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-none h-3 overflow-hidden">
                 <div 
-                  className="bg-rose-500 h-full rounded-full transition-all duration-1000 delay-300" 
+                  className="bg-rose-500 h-full rounded-none transition-all duration-1000 delay-300" 
                   style={{ 
                     width: stats.totalIncome > 0 
                       ? `${Math.min((stats.totalExpense / stats.totalIncome) * 100, 100)}%` 
@@ -77,15 +77,15 @@ export default async function DashboardPage() {
           </div>
         </div>
         
-        <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-[32px] p-8 border border-primary/10 flex flex-col justify-center items-center text-center">
-          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+        <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-none p-8 border border-primary/10 flex flex-col justify-center items-center text-center">
+          <div className="w-20 h-20 bg-white rounded-none flex items-center justify-center shadow-sm mb-6">
             <FolderKanban className="w-10 h-10 text-primary" />
           </div>
           <h2 className="text-5xl font-bold tracking-tighter text-foreground mb-2">
             {stats.activeProjects}
           </h2>
           <p className="text-muted-foreground font-medium">Proyek Sedang Berjalan</p>
-          <div className="mt-8 px-6 py-3 bg-white rounded-full text-sm font-semibold shadow-sm text-foreground">
+          <div className="mt-8 px-6 py-3 bg-white rounded-none text-sm font-semibold shadow-sm text-foreground">
             Total Histori: {stats.totalProjects} Proyek
           </div>
         </div>

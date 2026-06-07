@@ -39,7 +39,7 @@ export function AdminSidebar({ role }: { role?: string }) {
       >
         <div
           className="flex items-center justify-center w-8 h-8 flex-shrink-0"
-          style={{ backgroundColor: "#1B3B5A", borderRadius: "2px" }}
+          style={{ backgroundColor: "#1B3B5A", borderRadius: "0px" }}
         >
           <svg
             width="16"
@@ -91,11 +91,11 @@ export function AdminSidebar({ role }: { role?: string }) {
               key={item.href}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-sm cursor-pointer transition-colors duration-150 group"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-none cursor-pointer transition-colors duration-150 group"
               style={{
                 backgroundColor: active ? "#E8E2DD" : "transparent",
                 color: active ? "#1B3B5A" : "#6B6B6B",
-                borderRadius: "2px",
+                borderRadius: "0px",
                 fontWeight: active ? 600 : 400,
               }}
             >
@@ -108,7 +108,7 @@ export function AdminSidebar({ role }: { role?: string }) {
               </span>
               {active && (
                 <div
-                  className="ml-auto w-1 h-1 rounded-full"
+                  className="ml-auto w-1 h-1 rounded-none"
                   style={{ backgroundColor: "#1B3B5A" }}
                 />
               )}
@@ -123,11 +123,11 @@ export function AdminSidebar({ role }: { role?: string }) {
             <Link
               href="/admin/users"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-sm cursor-pointer transition-colors duration-150 group"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-none cursor-pointer transition-colors duration-150 group"
               style={{
                 backgroundColor: active ? "#E8E2DD" : "transparent",
                 color: active ? "#1B3B5A" : "#6B6B6B",
-                borderRadius: "2px",
+                borderRadius: "0px",
                 fontWeight: active ? 600 : 400,
               }}
             >
@@ -140,7 +140,7 @@ export function AdminSidebar({ role }: { role?: string }) {
               </span>
               {active && (
                 <div
-                  className="ml-auto w-1 h-1 rounded-full"
+                  className="ml-auto w-1 h-1 rounded-none"
                   style={{ backgroundColor: "#1B3B5A" }}
                 />
               )}
@@ -153,11 +153,11 @@ export function AdminSidebar({ role }: { role?: string }) {
       <div className="p-3" style={{ borderTop: "1px solid #E8E2DD" }}>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="w-full flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors duration-150"
+          className="w-full flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors duration-150 rounded-none"
           style={{
             backgroundColor: "transparent",
             color: "#6B6B6B",
-            borderRadius: "2px",
+            borderRadius: "0px",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = "#FFF0ED";

@@ -50,7 +50,7 @@ export default function LoginPage() {
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E8E2DD",
-          borderRadius: "2px",
+          borderRadius: "0px",
           padding: "48px",
         }}
       >
@@ -60,7 +60,7 @@ export default function LoginPage() {
             className="inline-flex items-center justify-center w-12 h-12 mb-4"
             style={{
               backgroundColor: "#1B3B5A",
-              borderRadius: "2px",
+              borderRadius: "0px",
             }}
           >
             {/* Placeholder Icon */}
@@ -132,7 +132,7 @@ export default function LoginPage() {
               style={{
                 backgroundColor: "#F8F9FA",
                 border: "1px solid #E8E2DD",
-                borderRadius: "2px",
+                borderRadius: "0px",
                 padding: "10px 14px",
                 fontSize: "14px",
                 color: "#1A1A1A",
@@ -167,7 +167,7 @@ export default function LoginPage() {
               style={{
                 backgroundColor: "#F8F9FA",
                 border: "1px solid #E8E2DD",
-                borderRadius: "2px",
+                borderRadius: "0px",
                 padding: "10px 14px",
                 fontSize: "14px",
                 color: "#1A1A1A",
@@ -184,7 +184,7 @@ export default function LoginPage() {
               style={{
                 backgroundColor: "rgba(182,68,0,0.07)",
                 border: "1px solid rgba(182,68,0,0.2)",
-                borderRadius: "2px",
+                borderRadius: "0px",
               }}
             >
               <svg
@@ -214,7 +214,7 @@ export default function LoginPage() {
             style={{
               backgroundColor: "#1B3B5A",
               color: "#F4EFEB",
-              borderRadius: "2px",
+              borderRadius: "0px",
               padding: "12px",
               fontSize: "12px",
               fontWeight: 700,

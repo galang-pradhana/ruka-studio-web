@@ -122,7 +122,7 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
       <DialogTrigger render={<Button variant="outline" size="sm" className="rounded-none h-8 px-2 border-gray-200 hover:bg-gray-50 hover:text-[#1A2530]" />}>
         <Pencil className="w-4 h-4" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto rounded-[28px] border-none bg-white/90 backdrop-blur-xl shadow-2xl p-6 sm:p-8">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto rounded-none border-none bg-white/90 backdrop-blur-xl shadow-2xl p-6 sm:p-8">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-tight text-foreground text-center mb-4">
             Edit Proyek
@@ -132,12 +132,12 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-foreground font-medium">Nama Proyek</Label>
-              <Input id="name" name="name" defaultValue={project.name} required className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Ruka House" />
+              <Input id="name" name="name" defaultValue={project.name} required className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Ruka House" />
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="clientName" className="text-foreground font-medium">Nama Klien</Label>
-              <Input id="clientName" name="clientName" defaultValue={project.clientName} required className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Bpk. Budi" />
+              <Input id="clientName" name="clientName" defaultValue={project.clientName} required className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Bpk. Budi" />
             </div>
           </div>
 
@@ -145,10 +145,10 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
             <div className="space-y-2">
               <Label htmlFor="mode" className="text-foreground font-medium">Mode Proyek</Label>
               <Select value={mode} onValueChange={(val) => val && setMode(val)}>
-                <SelectTrigger className="rounded-[12px] bg-secondary/50 border-transparent focus:ring-primary">
+                <SelectTrigger className="rounded-none bg-secondary/50 border-transparent focus:ring-primary">
                   <SelectValue placeholder="Pilih mode" />
                 </SelectTrigger>
-                <SelectContent className="rounded-[16px]">
+                <SelectContent className="rounded-none">
                   <SelectItem value="CONSULTATION">Konsultasi &amp; Desain</SelectItem>
                   <SelectItem value="FULL_CONTRACTOR">Full Kontraktor</SelectItem>
                 </SelectContent>
@@ -158,10 +158,10 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
             <div className="space-y-2">
               <Label htmlFor="status" className="text-foreground font-medium">Status Proyek</Label>
               <Select value={status} onValueChange={(val) => val && setStatus(val)}>
-                <SelectTrigger className="rounded-[12px] bg-secondary/50 border-transparent focus:ring-primary">
+                <SelectTrigger className="rounded-none bg-secondary/50 border-transparent focus:ring-primary">
                   <SelectValue placeholder="Pilih status" />
                 </SelectTrigger>
-                <SelectContent className="rounded-[16px]">
+                <SelectContent className="rounded-none">
                   <SelectItem value="ACTIVE">Aktif (Berjalan)</SelectItem>
                   <SelectItem value="COMPLETED">Selesai</SelectItem>
                   <SelectItem value="PENDING">Tertunda</SelectItem>
@@ -177,7 +177,7 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
               id="contractValueFormatted" 
               value={contractValueFormatted}
               onChange={handleCurrencyChange}
-              className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
+              className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
               placeholder="Rp 0" 
             />
           </div>
@@ -190,7 +190,7 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
                 name="startDate" 
                 type="date"
                 defaultValue={formatDateForInput(project.startDate)}
-                className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" 
+                className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" 
               />
             </div>
             
@@ -201,22 +201,22 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
                 name="estimatedEndDate" 
                 type="date"
                 defaultValue={formatDateForInput(project.estimatedEndDate)}
-                className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" 
+                className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" 
               />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="location" className="text-foreground font-medium">Lokasi</Label>
-            <Input id="location" name="location" defaultValue={project.location || ""} className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Kota atau alamat proyek" />
+            <Input id="location" name="location" defaultValue={project.location || ""} className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Kota atau alamat proyek" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="notes" className="text-foreground font-medium">Catatan</Label>
-            <Textarea id="notes" name="notes" defaultValue={project.notes || ""} rows={3} className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary resize-none" placeholder="Catatan tambahan..." />
+            <Textarea id="notes" name="notes" defaultValue={project.notes || ""} rows={3} className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary resize-none" placeholder="Catatan tambahan..." />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
+          <Button type="submit" disabled={loading} className="w-full rounded-none bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
             {loading ? "Menyimpan..." : "Simpan Perubahan"}
           </Button>
         </form>

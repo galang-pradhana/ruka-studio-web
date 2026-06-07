@@ -18,13 +18,14 @@ const ServicesSection = dynamic(() => import('@/components/landing/services-sect
 const WhyUsSection = dynamic(() => import('@/components/landing/why-us-section').then(m => m.WhyUsSection));
 const OurTeamSection = dynamic(() => import('@/components/landing/our-team-section').then(m => m.OurTeamSection));
 const TestimonialsSection = dynamic(() => import('@/components/landing/testimonials-section').then(m => m.TestimonialsSection));
+const FAQSection = dynamic(() => import('@/components/landing/faq-section').then(m => m.FAQSection));
+const ProjectBriefSection = dynamic(() => import('@/components/landing/project-brief-section').then(m => m.ProjectBriefSection));
 
 import { BACKGROUNDS } from '@/components/landing/types';
 import { easeInOut, lerp, clamp, useIsMobile } from '@/components/landing/utils';
 import { TRANSLATIONS } from '@/components/landing/translations';
 import { useLanguage } from '@/contexts/language-context';
 import { LandingFooter } from '@/components/landing/footer';
-import { FloatingWhatsApp } from '@/components/landing/floating-wa';
 
 export default function ClientHome({ 
   contentMap, 
@@ -214,6 +215,8 @@ export default function ClientHome({
             src={bg.url}
             alt={bg.nameEN}
             referrerPolicy="no-referrer"
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchPriority={idx === 0 ? "high" : "low"}
             className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
             style={{
               zIndex: 5,
@@ -285,7 +288,7 @@ export default function ClientHome({
           }} />
           <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-[#c5a880]/30 via-[#8a7b6e]/60 to-[#c5a880]/30" />
           <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
-            <div className="w-[3px] h-[120px] bg-gradient-to-b from-[#c5a880] via-[#8a7b6e] to-[#c5a880] rounded-full shadow-[0_0_12px_rgba(197,168,128,0.3)]" />
+            <div className="w-[3px] h-[120px] bg-gradient-to-b from-[#c5a880] via-[#8a7b6e] to-[#c5a880] rounded-none shadow-[0_0_12px_rgba(197,168,128,0.3)]" />
             <div className="text-[9px] tracking-[0.22em] uppercase origin-center rotate-90 text-[#c5a880]/50 whitespace-nowrap select-none font-sans mt-8">
               {t.pullToOpen}
             </div>
@@ -316,7 +319,7 @@ export default function ClientHome({
           }} />
           <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-[#c5a880]/30 via-[#8a7b6e]/60 to-[#c5a880]/30" />
           <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
-            <div className="w-[3px] h-[120px] bg-gradient-to-b from-[#c5a880] via-[#8a7b6e] to-[#c5a880] rounded-full shadow-[0_0_12px_rgba(197,168,128,0.3)]" />
+            <div className="w-[3px] h-[120px] bg-gradient-to-b from-[#c5a880] via-[#8a7b6e] to-[#c5a880] rounded-none shadow-[0_0_12px_rgba(197,168,128,0.3)]" />
             <div className="text-[9px] tracking-[0.22em] uppercase origin-center -rotate-90 text-[#c5a880]/50 whitespace-nowrap select-none font-sans mt-8">
               RUKA STUDIO
             </div>
@@ -352,13 +355,14 @@ export default function ClientHome({
         <div className="relative z-40 bg-[#FCFAF6]">
           <AboutHeroSection data={contentMap?.ABOUT || {}} />
           <ProcessStackedCards data={contentMap?.PROCESS || {}} />
-          <ServicesSection data={contentMap?.SERVICES || {}} />
           <WhyUsSection data={contentMap?.WHY_US || {}} />
+          <ServicesSection data={contentMap?.SERVICES || {}} />
           <OurTeamSection data={contentMap?.TEAM || {}} />
           <TestimonialsSection data={contentMap?.TESTIMONIALS || {}} />
+          <FAQSection />
+          <ProjectBriefSection />
         </div>
       </div>
-      <FloatingWhatsApp data={contentMap?.CONTACT || {}} />
     </div>
   );
 }

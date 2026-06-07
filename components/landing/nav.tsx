@@ -124,7 +124,7 @@ export function LandingNav({ data = {} }: { data?: Record<string, string> }) {
               fontFamily: "var(--font-montserrat, sans-serif)",
               width: "42px",
               height: "42px",
-              borderRadius: "12px",
+              borderRadius: "0px",
               backgroundColor: "rgba(10,6,8,0.06)",
               color: "#0B2240",
             }}
@@ -147,7 +147,7 @@ export function LandingNav({ data = {} }: { data?: Record<string, string> }) {
             style={{
               fontFamily: "var(--font-montserrat, sans-serif)",
               padding: "10px 24px",
-              borderRadius: "999px",
+              borderRadius: "0px",
               backgroundColor: "#0a0608",
               color: "#FCFAF6",
               border: "1.5px solid #0a0608",
@@ -214,7 +214,7 @@ export function LandingNav({ data = {} }: { data?: Record<string, string> }) {
             className="flex items-center justify-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] mt-2 py-3.5"
             style={{
               fontFamily: "var(--font-montserrat, sans-serif)",
-              borderRadius: "999px",
+              borderRadius: "0px",
               backgroundColor: "#0a0608",
               color: "#FCFAF6",
             }}

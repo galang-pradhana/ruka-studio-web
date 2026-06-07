@@ -211,14 +211,14 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
                     [field.key]: current === "false" ? "true" : "false",
                   }));
                 }}
-                className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#1B3B5A] focus:ring-offset-2 flex-shrink-0"
+                className="relative inline-flex h-6 w-11 items-center rounded-none transition-colors focus:outline-none focus:ring-2 focus:ring-[#1B3B5A] focus:ring-offset-2 flex-shrink-0"
                 style={{
                   backgroundColor:
                     getValue(field.key, field.fallback) !== "false" ? "#1B3B5A" : "#D1D5DB",
                 }}
               >
                 <span
-                  className="inline-block h-4 w-4 transform rounded-full bg-white transition-transform"
+                  className="inline-block h-4 w-4 transform rounded-none bg-white transition-transform"
                   style={{
                     transform:
                       getValue(field.key, field.fallback) !== "false"

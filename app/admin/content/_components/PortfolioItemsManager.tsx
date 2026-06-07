@@ -144,7 +144,7 @@ export default function PortfolioItemsManager() {
                     required
                   />
                   {formData.imageUrl && (
-                    <div className="w-10 h-10 rounded border overflow-hidden shrink-0">
+                    <div className="w-10 h-10 rounded-none border overflow-hidden shrink-0">
                       <img src={formData.imageUrl} alt="preview" className="w-full h-full object-cover" />
                     </div>
                   )}
@@ -175,13 +175,13 @@ export default function PortfolioItemsManager() {
           <Loader2 className="w-6 h-6 animate-spin" />
         </div>
       ) : items.length === 0 ? (
-        <div className="text-center p-8 border border-dashed rounded-lg text-gray-500 bg-gray-50">
+        <div className="text-center p-8 border border-dashed rounded-none text-gray-500 bg-gray-50">
           Belum ada item portfolio. Klik "Tambah Portfolio" untuk mulai menambahkan.
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map(item => (
-            <div key={item.id} className="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+            <div key={item.id} className="border rounded-none overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 relative group">
                 {item.imageUrl ? (
                   <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />

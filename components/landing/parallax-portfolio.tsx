@@ -64,10 +64,10 @@ const ParallaxPortfolio = ({ items, data = {} }: Props) => {
   });
 
   const { height } = dimension;
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * 3.75]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 5.05]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 3.0]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 4.75]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, height * 2.0]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 2.5]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.8]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 2.2]);
 
   // Looping logic for 24 images (doubled to support 2x scrolling height)
   const validItems = items?.filter(item => item.imageUrl && !item.imageUrl.includes('/images/lummi')) || [];
@@ -104,7 +104,7 @@ const ParallaxPortfolio = ({ items, data = {} }: Props) => {
   return (
     <div id="projects" className="w-full bg-[#FCFAF6] text-[#0B2240] flex flex-col items-center scroll-mt-24">
       {/* Spacer & Intro Header */}
-      <div className="w-full flex flex-col items-center justify-center gap-6 text-center pt-32 pb-20 px-4 relative z-10">
+      <div className="w-full flex flex-col items-center justify-center gap-6 text-center pt-32 md:pt-40 pb-20 px-4 relative z-10">
         <span className="text-[11px] font-mono tracking-[0.2em] text-[#A4855C] uppercase flex items-center gap-2">
           <Compass className="w-4 h-4 text-[#A4855C]" /> {displayTitle}
         </span>
@@ -115,12 +115,12 @@ const ParallaxPortfolio = ({ items, data = {} }: Props) => {
 
       <div
         ref={gallery}
-        className="relative box-border flex h-[350vh] w-full gap-[2vw] overflow-hidden bg-[#FCFAF6] p-[2vw]"
+        className="relative box-border flex h-[150vh] md:h-[250vh] w-full gap-2 md:gap-4 overflow-hidden bg-[#FCFAF6] p-0"
       >
-        <Column images={displayImages.slice(0, 6)} y={y} />
-        <Column images={displayImages.slice(6, 12)} y={y2} />
-        <Column images={displayImages.slice(12, 18)} y={y3} />
-        <Column images={displayImages.slice(18, 24)} y={y4} />
+        <Column images={displayImages.slice(0, 6)} y={y} className="flex" />
+        <Column images={displayImages.slice(6, 12)} y={y2} className="flex" />
+        <Column images={displayImages.slice(12, 18)} y={y3} className="hidden md:flex" />
+        <Column images={displayImages.slice(18, 24)} y={y4} className="hidden md:flex" />
       </div>
       
       {/* Simple spacer instead of "Gulir ke bawah" text */}
@@ -132,16 +132,17 @@ const ParallaxPortfolio = ({ items, data = {} }: Props) => {
 type ColumnProps = {
   images: string[];
   y: MotionValue<number>;
+  className?: string;
 };
 
-const Column = ({ images, y }: ColumnProps) => {
+const Column = ({ images, y, className = "" }: ColumnProps) => {
   return (
     <motion.div
-      className="relative flex h-full w-1/4 min-w-[40vw] md:min-w-[25vw] lg:min-w-[250px] flex-col gap-[2vw] top-[-78vh] [&:nth-child(2)]:top-[-166vh] [&:nth-child(3)]:top-[-78vh] [&:nth-child(4)]:top-[-131vh]"
+      className={`relative h-full w-1/2 md:w-1/4 flex-col gap-2 md:gap-4 top-[-30vh] md:top-[-78vh] [&:nth-child(2)]:top-[-60vh] md:[&:nth-child(2)]:top-[-166vh] md:[&:nth-child(3)]:top-[-78vh] md:[&:nth-child(4)]:top-[-131vh] ${className}`}
       style={{ y }}
     >
       {images.map((src, i) => (
-        <div key={i} className="relative h-full w-full overflow-hidden rounded-[24px] bg-[#EFECE6] shadow-[0_12px_28px_rgba(11,34,64,0.06)] group">
+        <div key={i} className="relative h-full w-full overflow-hidden rounded-none bg-[#EFECE6] group cursor-pointer">
           <img
             src={`${src}`}
             alt="Portfolio View"

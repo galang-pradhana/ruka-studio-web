@@ -28,8 +28,7 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
   return (
     <footer
       id="reverie-footer"
-      className="w-full relative z-50 bg-[#FCFAF6] text-[#0B2240] py-24 px-6 md:px-12 lg:px-20 overflow-hidden border-t border-[#0B2240]/10 flex flex-col justify-between"
-      style={{ minHeight: '90vh' }}
+      className="w-full relative z-50 bg-[#FCFAF6] text-[#0B2240] py-20 px-6 md:px-12 lg:px-20 overflow-hidden border-t border-[#0B2240]/10 flex flex-col justify-between"
     >
       {/* Rich, high-precision technical vector architectural blueprint backdrop */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden opacity-[0.32] md:opacity-[0.38]" aria-hidden="true">
@@ -70,7 +69,7 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
               href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio,%20saya%20ingin%20diskusi%20proyek."
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 bg-black hover:bg-[#A4855C] text-white px-7 py-3 rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-[0_8px_20px_rgba(11,34,64,0.12)] border border-[#0B2240]/10"
+              className="group inline-flex items-center gap-4 bg-black hover:bg-[#A4855C] text-white px-7 py-3 rounded-none transition-all duration-300 transform hover:scale-[1.02] shadow-[0_8px_20px_rgba(11,34,64,0.12)] border border-[#0B2240]/10"
             >
               <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold">
                 {language === "ID" ? "Diskusikan Bersama Kami" : "Discuss With Us"}

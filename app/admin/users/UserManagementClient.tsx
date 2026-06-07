@@ -126,7 +126,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
       {/* RBAC Info Card */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {Object.entries(ROLE_DESCRIPTIONS).map(([role, desc]) => (
-          <div key={role} className={`p-4 rounded-lg border ${ROLE_BADGE_CLASSES[role]} border-opacity-50`}>
+          <div key={role} className={`p-4 rounded-none border ${ROLE_BADGE_CLASSES[role]} border-opacity-50`}>
             <div className="flex items-center gap-2 mb-1">
               <ShieldCheck className="w-4 h-4" />
               <span className="font-semibold text-sm">{ROLE_LABELS[role]}</span>
@@ -142,7 +142,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
         <DialogTrigger render={<Button className="rounded-none bg-[#1A2530] hover:bg-[#2C3E50] text-[#E8E1D5] px-5 py-2 h-10 inline-flex items-center text-sm shadow-none" />}>
             <Plus className="mr-2 h-4 w-4" /> Tambah User Baru
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[420px] rounded-2xl">
+          <DialogContent className="sm:max-w-[420px] rounded-none">
             <DialogHeader>
               <DialogTitle className="text-xl font-bold">Tambah User Baru</DialogTitle>
             </DialogHeader>
@@ -163,17 +163,17 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
               <div className="space-y-2">
                 <Label>Role</Label>
                 <Select value={newRole} onValueChange={(val) => val && setNewRole(val)}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-none">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="rounded-none">
                     <SelectItem value="VIEWER">Viewer — Hanya lihat</SelectItem>
                     <SelectItem value="ADMIN">Admin — Kelola proyek</SelectItem>
                     <SelectItem value="OWNER">Owner — Akses penuh</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              <Button type="submit" disabled={createLoading} className="w-full bg-[#1A2530] hover:bg-[#2C3E50] text-white rounded-lg h-10">
+              <Button type="submit" disabled={createLoading} className="w-full bg-[#1A2530] hover:bg-[#2C3E50] text-white rounded-none h-10">
                 {createLoading ? "Membuat..." : "Buat User"}
               </Button>
             </form>
@@ -199,7 +199,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
               <TableRow key={user.id} className="hover:bg-gray-50/30 border-b border-gray-100 last:border-0">
                 <TableCell className="align-middle">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-[#1A2530] text-white flex items-center justify-center text-xs font-bold shrink-0">
+                    <div className="w-7 h-7 rounded-none bg-[#1A2530] text-white flex items-center justify-center text-xs font-bold shrink-0">
                       {user.name[0].toUpperCase()}
                     </div>
                     <div>
@@ -224,10 +224,10 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
                       value={user.role}
                       onValueChange={(val) => val && handleRoleChange(user.id, val)}
                     >
-                      <SelectTrigger className="h-7 w-32 text-xs border-gray-200 rounded">
+                      <SelectTrigger className="h-7 w-32 text-xs border-gray-200 rounded-none">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-none">
                         <SelectItem value="VIEWER">Viewer</SelectItem>
                         <SelectItem value="ADMIN">Admin</SelectItem>
                         <SelectItem value="OWNER">Owner</SelectItem>
@@ -236,7 +236,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
                   )}
                 </TableCell>
                 <TableCell className="align-middle text-center">
-                  <span className={`inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded border ${
+                  <span className={`inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded-none border ${
                     user.isActive
                       ? "bg-emerald-50 text-emerald-700 border-emerald-100"
                       : "bg-gray-100 text-gray-500 border-gray-200"
@@ -265,7 +265,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
                       <DialogTrigger render={<Button variant="outline" size="sm" className="rounded-none h-7 px-2 border-gray-200 text-xs" title="Reset Password" />}>
                           <KeyRound className="w-3.5 h-3.5 text-amber-500" />
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[360px] rounded-2xl">
+                        <DialogContent className="sm:max-w-[360px] rounded-none">
                           <DialogHeader>
                             <DialogTitle>Reset Password — {user.name}</DialogTitle>
                           </DialogHeader>
@@ -275,7 +275,7 @@ export function UserManagementClient({ users, currentUserId }: { users: User[]; 
                               <Input id={`newPassword-${user.id}`} name="newPassword" type="password" required placeholder="Min. 8 karakter" minLength={8} />
                               <p className="text-xs text-gray-400">User wajib ganti password ini saat login berikutnya.</p>
                             </div>
-                            <Button type="submit" disabled={resetLoading} className="w-full bg-amber-500 hover:bg-amber-600 text-white rounded-lg h-9 text-sm">
+                            <Button type="submit" disabled={resetLoading} className="w-full bg-amber-500 hover:bg-amber-600 text-white rounded-none h-9 text-sm">
                               {resetLoading ? "Mereset..." : "Reset Password"}
                             </Button>
                           </form>

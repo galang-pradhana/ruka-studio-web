@@ -72,10 +72,10 @@ export function CreateProjectDialog({ triggerClassName, buttonText = "Tambah Pro
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button className={triggerClassName || "rounded-full bg-primary hover:bg-primary/90 text-white shadow-none font-medium px-6"} />}>
+      <DialogTrigger render={<Button className={triggerClassName || "rounded-none bg-primary hover:bg-primary/90 text-white shadow-none font-medium px-6"} />}>
         <Plus className="mr-2 h-4 w-4" /> {buttonText}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-[28px] border-none bg-white/80 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[425px] rounded-none border-none bg-white/80 backdrop-blur-xl shadow-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-tight text-foreground text-center mb-4">
             Proyek Baru
@@ -84,21 +84,21 @@ export function CreateProjectDialog({ triggerClassName, buttonText = "Tambah Pro
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="name" className="text-foreground font-medium">Nama Proyek</Label>
-            <Input id="name" name="name" required className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Ruka House" />
+            <Input id="name" name="name" required className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Ruka House" />
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="clientName" className="text-foreground font-medium">Nama Klien</Label>
-            <Input id="clientName" name="clientName" required className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Bpk. Budi" />
+            <Input id="clientName" name="clientName" required className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary" placeholder="Contoh: Bpk. Budi" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="mode" className="text-foreground font-medium">Mode Proyek</Label>
             <Select value={mode} onValueChange={(val) => val && setMode(val)} required>
-              <SelectTrigger className="rounded-[12px] bg-secondary/50 border-transparent focus:ring-primary">
+              <SelectTrigger className="rounded-none bg-secondary/50 border-transparent focus:ring-primary">
                 <SelectValue placeholder="Pilih mode" />
               </SelectTrigger>
-              <SelectContent className="rounded-[16px]">
+              <SelectContent className="rounded-none">
                 <SelectItem value="CONSULTATION">Konsultasi &amp; Desain</SelectItem>
                 <SelectItem value="FULL_CONTRACTOR">Full Kontraktor</SelectItem>
               </SelectContent>
@@ -111,14 +111,14 @@ export function CreateProjectDialog({ triggerClassName, buttonText = "Tambah Pro
               id="contractValueFormatted" 
               value={contractValueFormatted}
               onChange={handleCurrencyChange}
-              className="rounded-[12px] bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
+              className="rounded-none bg-secondary/50 border-transparent focus-visible:ring-primary font-mono" 
               placeholder="Rp 0" 
             />
             {/* Hidden field for actual raw value */}
             <input type="hidden" name="contractValue" value={contractValueRaw} />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
+          <Button type="submit" disabled={loading} className="w-full rounded-none bg-primary hover:bg-primary/90 text-white font-medium shadow-none h-12 text-md mt-4">
             {loading ? "Menyimpan..." : "Simpan Proyek"}
           </Button>
         </form>

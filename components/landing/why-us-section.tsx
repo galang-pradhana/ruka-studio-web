@@ -15,8 +15,8 @@ export function WhyUsSection({ data }: WhyUsProps) {
     : (data?.titleID || data?.title || "MENGAPA KAMI");
 
   const description = language === 'EN'
-    ? (data?.descriptionEN || "We build meaningful spaces, focusing on precision and material quality.")
-    : (data?.descriptionID || data?.description || "Kami membangun ruang yang bermakna, berfokus pada ketelitian dan kualitas material.");
+    ? (data?.descriptionEN || "We design spaces that matter, built with care and the best materials.")
+    : (data?.descriptionID || data?.description || "Kami merancang ruang yang berharga, dibangun dengan cermat menggunakan material terbaik.");
 
   const stats = [
     { 
@@ -36,22 +36,22 @@ export function WhyUsSection({ data }: WhyUsProps) {
   const points = [
     {
       title: language === 'EN' ? (data?.point1EN || "Premium Materials") : (data?.point1ID || data?.point1 || "Material Premium"),
-      desc: language === 'EN' ? (data?.point1DescEN || "Every material is chosen for its quality, durability, and long-term aesthetic.") : (data?.point1DescID || data?.point1Desc || "Setiap material dipilih berdasarkan kualitas, durabilitas, dan estetika jangka panjang."),
+      desc: language === 'EN' ? (data?.point1DescEN || "We carefully select materials that look great and stand the test of time.") : (data?.point1DescID || data?.point1Desc || "Kami memilih material yang tahan lama dan tetap terlihat indah bertahun-tahun kemudian."),
     },
     {
       title: language === 'EN' ? (data?.point2EN || "Sustainable Design") : (data?.point2ID || data?.point2 || "Desain Berkelanjutan"),
-      desc: language === 'EN' ? (data?.point2DescEN || "A design approach that balances function, efficiency, and beauty.") : (data?.point2DescID || data?.point2Desc || "Pendekatan desain yang mempertimbangkan fungsi, efisiensi, dan keindahan secara bersamaan."),
+      desc: language === 'EN' ? (data?.point2DescEN || "We design homes that balance daily function with lasting beauty.") : (data?.point2DescID || data?.point2Desc || "Kami merancang hunian yang menyeimbangkan fungsi harian dengan keindahan visual."),
     },
     {
       title: language === 'EN' ? (data?.point3EN || "Precision Execution") : (data?.point3ID || data?.point3 || "Eksekusi Presisi"),
-      desc: language === 'EN' ? (data?.point3DescEN || "Experienced teams ensuring every detail is completed on time and to specification.") : (data?.point3DescID || data?.point3Desc || "Tim berpengalaman yang memastikan setiap detail selesai tepat waktu dan sesuai spesifikasi."),
+      desc: language === 'EN' ? (data?.point3DescEN || "Our team ensures every detail is built right and finished on schedule.") : (data?.point3DescID || data?.point3Desc || "Tim kami memastikan setiap detail terbangun dengan benar dan selesai tepat waktu."),
     },
   ];
 
   return (
     <section
       id="why-us"
-      className="py-28 relative overflow-hidden scroll-mt-24"
+      className="pt-32 md:pt-28 pb-28 relative overflow-hidden scroll-mt-24 z-20"
       style={{
         backgroundColor: "#FCFAF6",
         borderTop: "1px solid rgba(10,6,8,0.06)",
@@ -65,7 +65,7 @@ export function WhyUsSection({ data }: WhyUsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-28 pb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-20 md:mb-28 pb-16"
           style={{ borderBottom: "1px solid rgba(10,6,8,0.08)" }}
         >
           {stats.map((stat, idx) => (
@@ -84,10 +84,10 @@ export function WhyUsSection({ data }: WhyUsProps) {
               <p
                 className="uppercase font-medium"
                 style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.3em",
+                  fontSize: "11px",
+                  letterSpacing: "0.25em",
                   fontFamily: "var(--font-montserrat, sans-serif)",
-                  color: "rgba(10,6,8,0.4)",
+                  color: "rgba(10,6,8,0.45)",
                 }}
               >
                 {stat.label}
@@ -143,7 +143,7 @@ export function WhyUsSection({ data }: WhyUsProps) {
                 padding: "36px 32px",
                 border: "1px solid rgba(10,6,8,0.08)",
                 backgroundColor: "#fff",
-                borderRadius: "2px",
+                borderRadius: "0px",
               }}
             >
               {/* Hover gold left bar */}
@@ -159,7 +159,7 @@ export function WhyUsSection({ data }: WhyUsProps) {
                   style={{
                     width: "40px",
                     height: "40px",
-                    borderRadius: "999px",
+                    borderRadius: "0px",
                     border: "1.5px solid rgba(197,168,128,0.3)",
                     fontSize: "13px",
                     fontFamily: "var(--font-cinzel, serif)",

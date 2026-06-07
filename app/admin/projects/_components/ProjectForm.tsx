@@ -206,7 +206,7 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectData
               name="isActive"
               id="isActive"
               defaultChecked={initialData ? initialData.isActive : true}
-              className="rounded-sm border-gray-300 text-[#1A2530] focus:ring-[#1A2530] w-4 h-4"
+              className="rounded-none border-gray-300 text-[#1A2530] focus:ring-[#1A2530] w-4 h-4"
             />
             <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Tampilkan di Website

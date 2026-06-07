@@ -35,9 +35,9 @@ export function ExpenseList({ expenses, projectId }: { expenses: any[]; projectI
   return (
     <div className="space-y-4">
       {expenses.map((expense) => (
-        <div key={expense.id} className="bg-white rounded-[24px] p-5 md:p-6 border border-border shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all hover:shadow-md">
+        <div key={expense.id} className="bg-white rounded-none p-5 md:p-6 border border-border shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all hover:shadow-md">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-none bg-red-50 flex items-center justify-center shrink-0">
               <Receipt className="w-5 h-5 text-red-500" />
             </div>
             <div>
@@ -65,7 +65,7 @@ export function ExpenseList({ expenses, projectId }: { expenses: any[]; projectI
               variant="ghost"
               size="icon"
               onClick={() => handleDelete(expense.id)}
-              className="text-red-500 hover:text-red-600 hover:bg-red-50 rounded-full"
+              className="text-red-500 hover:text-red-600 hover:bg-red-50 rounded-none"
             >
               <Trash2 className="w-4 h-4" />
             </Button>

@@ -94,7 +94,7 @@ export function PortfolioSection({ items, data = {} }: Props) {
                 } items-center`}
               >
                 {/* Image with hover reveal */}
-                <div className="w-full md:w-2/3 overflow-hidden group relative" style={{ borderRadius: "2px" }}>
+                <div className="w-full md:w-2/3 overflow-hidden group relative" style={{ borderRadius: "0px" }}>
                   <motion.div
                     whileHover={{ scale: 1.04 }}
                     transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -117,7 +117,7 @@ export function PortfolioSection({ items, data = {} }: Props) {
                         className="text-[11px] font-bold tracking-[0.18em] uppercase"
                         style={{
                           padding: "12px 28px",
-                          borderRadius: "999px",
+                          borderRadius: "0px",
                           border: "1.5px solid rgba(197,168,128,0.6)",
                           color: "#A4855C",
                           backgroundColor: "rgba(10,6,8,0.4)",
@@ -145,7 +145,7 @@ export function PortfolioSection({ items, data = {} }: Props) {
                           fontSize: "9px",
                           letterSpacing: "0.3em",
                           padding: "5px 12px",
-                          borderRadius: "999px",
+                          borderRadius: "0px",
                           border: "1px solid rgba(197,168,128,0.35)",
                           color: "#A4855C",
                           fontFamily: "var(--font-montserrat, sans-serif)",

@@ -43,12 +43,12 @@ export function TermCard({ term }: TermCardProps) {
   }).format(Number(term.amount));
 
   return (
-    <div className={`p-5 rounded-[24px] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all ${isPaid ? 'bg-secondary/30 border border-border/50' : 'bg-white shadow-sm'}`}>
+    <div className={`p-5 rounded-none flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all ${isPaid ? 'bg-secondary/30 border border-border/50' : 'bg-white shadow-sm'}`}>
       <div>
         <div className="flex items-center gap-3 mb-1">
           <h4 className="text-lg font-bold tracking-tight text-foreground">{term.termName}</h4>
           {term.percentage && (
-            <Badge variant="outline" className="text-xs bg-secondary/50 rounded-full border-none">
+            <Badge variant="outline" className="text-xs bg-secondary/50 rounded-none border-none">
               {Number(term.percentage)}%
             </Badge>
           )}
@@ -72,7 +72,7 @@ export function TermCard({ term }: TermCardProps) {
         onClick={handleToggleStatus} 
         disabled={loading}
         variant={isPaid ? "outline" : "default"}
-        className={`rounded-full font-medium px-6 shadow-none ${isPaid ? 'bg-transparent hover:bg-secondary' : 'bg-primary hover:bg-primary/90 text-white'}`}
+        className={`rounded-none font-medium px-6 shadow-none ${isPaid ? 'bg-transparent hover:bg-secondary' : 'bg-primary hover:bg-primary/90 text-white'}`}
       >
         {loading ? "Memproses..." : isPaid ? "Batalkan Lunas" : "Tandai Lunas"}
       </Button>

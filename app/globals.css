@@ -139,7 +139,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #0a0608;
-  font-family: 'Imprima', sans-serif;
+  /* Font is controlled by --font-montserrat CSS variable from next/font */
 }
 
 .glass {
@@ -155,4 +155,23 @@ html, body {
 
 .animate-bobUp {
   animation: bobUp 2s ease-in-out infinite;
+}
+
+/* =====================================================
+   Accessibility: Respect user motion preferences
+   WCAG 2.1 Success Criterion 2.3.3 (Animation from Interactions)
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-bobUp {
+    animation: none;
+  }
 }

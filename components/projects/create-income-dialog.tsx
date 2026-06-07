@@ -81,11 +81,11 @@ export function CreateIncomeDialog({ projectId }: { projectId: string }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="rounded-full" />}>
+      <DialogTrigger render={<Button variant="outline" className="rounded-none" />}>
         <Plus className="w-4 h-4 mr-2" />
         Tambah Pemasukan
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] rounded-[32px]">
+      <DialogContent className="sm:max-w-[425px] rounded-none">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Catat Pemasukan Ekstra</DialogTitle>
@@ -125,7 +125,7 @@ export function CreateIncomeDialog({ projectId }: { projectId: string }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" disabled={loading} className="w-full rounded-full bg-emerald-500 hover:bg-emerald-600 text-white">
+            <Button type="submit" disabled={loading} className="w-full rounded-none bg-emerald-500 hover:bg-emerald-600 text-white">
               {loading ? "Menyimpan..." : "Simpan Pemasukan"}
             </Button>
           </DialogFooter>
