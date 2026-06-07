@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/lib/generated/prisma
+
+# Exclude multi-page layouts from being committed
+/app/(public)/work
+/app/(public)/studio
+/app/(public)/process
+/app/(public)/gallery
+
+# Local helper scripts
+/process_cad.py

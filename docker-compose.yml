@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: rukastudio
+      POSTGRES_PASSWORD: rukapassword
+      POSTGRES_DB: rukadb
+    ports:
+      - "5433:5432"
+    volumes:
+      - ruka_db_data:/var/lib/postgresql/data
+
+volumes:
+  ruka_db_data:
