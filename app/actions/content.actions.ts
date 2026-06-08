@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { LpSection } from "@prisma/client";
+import { LpSection, LpContent } from "@prisma/client";
 
 export async function getContentBySection(section: LpSection) {
   try {
@@ -19,7 +19,7 @@ export async function getContentBySection(section: LpSection) {
 
 import { cache } from 'react';
 
-export const getAllContentMap = cache(async () => {
+export const getAllContentMap = cache(async (): Promise<{ success: true; data: Record<string, LpContent[]> } | { success: false; error: string }> => {
   try {
     const allContent = await prisma.lpContent.findMany({
       orderBy: [
@@ -35,7 +35,7 @@ export const getAllContentMap = cache(async () => {
       }
       acc[item.section].push(item);
       return acc;
-    }, {} as Record<string, typeof allContent>);
+    }, {} as Record<string, LpContent[]>);
     
     return { success: true, data: contentMap };
   } catch (error) {

@@ -1,6 +1,7 @@
 import { getAllContentMap } from "@/app/actions/content.actions";
 import { prisma } from "@/lib/prisma";
 import ClientHome from "./client-home";
+import type { LpContent } from "@prisma/client";
 
 export const metadata = {
   title: "Ruka Studio | Architecture & Interior Design",
@@ -15,7 +16,8 @@ export default async function HomePage() {
   // where contentMap['HERO']['headline'] = "INTEGRITAS"
   const contentMap: Record<string, Record<string, string>> = {};
   if (contentResult.success && contentResult.data) {
-    Object.entries(contentResult.data).forEach(([section, items]) => {
+    const data = contentResult.data as Record<string, LpContent[]>;
+    Object.entries(data).forEach(([section, items]) => {
       contentMap[section] = {};
       items.forEach(item => {
         contentMap[section][item.key] = item.value;

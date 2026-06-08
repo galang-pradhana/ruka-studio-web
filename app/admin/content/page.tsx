@@ -110,7 +110,9 @@ const SECTION_FIELDS = {
 };
 
 export default async function ContentPage() {
-  const { data: contentMap, error } = await getAllContentMap();
+  const contentResult = await getAllContentMap();
+  const contentMap = contentResult.success ? contentResult.data : null;
+  const error = contentResult.success ? null : contentResult.error;
 
   const getInitialData = (section: LpSection) => {
     return contentMap?.[section] || [];

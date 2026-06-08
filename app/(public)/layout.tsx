@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LandingFooter } from "@/components/landing/footer";
 import { getAllContentMap } from "@/app/actions/content.actions";
+import type { LpContent } from "@prisma/client";
 
 export const metadata: Metadata = {
   title: "Ruka Studio — Konsultan & Perencana Konstruksi",
@@ -22,9 +23,11 @@ export default async function PublicLayout({
   children: React.ReactNode;
 }) {
   const contentMapRes = await getAllContentMap();
-  const contentMap = contentMapRes.success && contentMapRes.data ? contentMapRes.data : {};
+  const contentMap = contentMapRes.success && contentMapRes.data
+    ? (contentMapRes.data as Record<string, LpContent[]>)
+    : {} as Record<string, LpContent[]>;
 
-  const toMap = (sectionArray: any[]) => {
+  const toMap = (sectionArray: LpContent[] | undefined) => {
     if (!sectionArray) return {};
     return sectionArray.reduce((acc, item) => {
       acc[item.key] = item.value;
