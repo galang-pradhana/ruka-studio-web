@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/utils";
 
 import Image from "next/image";
 
@@ -35,7 +36,7 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
       {/* Rich, high-precision technical vector architectural blueprint backdrop */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden opacity-[0.32] md:opacity-[0.38]" aria-hidden="true">
         <div className="absolute bottom-0 right-[-5%] md:right-0 w-[120%] md:w-[75%] h-[80%] md:h-[95%]">
-          <Image src="/cad-footer-bg.png" alt="CAD Background" fill className="object-cover md:object-contain object-left-bottom md:object-right-bottom opacity-[0.5] mix-blend-multiply" />
+          <Image src={data.footerImage || "/cad-footer-bg.png"} alt="CAD Background" fill className="object-cover md:object-contain object-left-bottom md:object-right-bottom opacity-[0.5] mix-blend-multiply" />
         </div>
       </div>
 
@@ -46,37 +47,44 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
           {/* LEFT AREA: High-end sentence case heading following screenshot exactly */}
           <div className="lg:col-span-7 flex flex-col items-start text-left gap-8 md:gap-10">
             <h2 className="font-serif text-[40px] md:text-[56px] leading-[1.08] text-[#0B2240] tracking-tight selection:bg-[#A4855C]/20 text-left">
-              {language === "ID" ? (
-                <>
-                  Wujudkan <span className="italic font-normal text-[#0B2240]">visi Anda</span>
-                  <br />
-                  sekarang
-                </>
-              ) : (
-                <>
-                  Bring your <span className="italic font-normal text-[#0B2240]">vision to life</span>
-                  <br />
-                  now
-                </>
+              {parseDualLanguage(
+                data.footerTitle,
+                language,
+                language === "ID" ? "Wujudkan visi Anda sekarang." : "Bring your vision to life now."
+              ).split('.').map((part, index, arr) => 
+                index === arr.length - 1 ? (
+                  <span key={index}>{part}</span>
+                ) : (
+                  <React.Fragment key={index}>
+                    {part}<span className="text-[#FF633E] font-serif font-medium ml-1">.</span>
+                  </React.Fragment>
+                )
               )}
-              <span className="text-[#FF633E] font-serif font-medium ml-1">.</span>
             </h2>
 
             <p className="font-sans text-[13px] text-[#0B2240]/70 max-w-sm mt-[-1rem] leading-relaxed">
-              {language === "ID" 
-                ? "Kami siap mendengarkan. Diskusikan ide awal Anda bersama tim arsitek kami." 
-                : "We are ready to listen. Discuss your initial ideas with our architectural team."}
+              {parseDualLanguage(
+                data.footerDesc,
+                language,
+                language === "ID" 
+                  ? "Kami siap mendengarkan. Diskusikan ide awal Anda bersama tim arsitek kami." 
+                  : "We are ready to listen. Discuss your initial ideas with our architectural team."
+              )}
             </p>
 
             {/* Highly finished button: follows RUKA's standard dark pill style with accent colors */}
             <a
-              href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio,%20saya%20ingin%20diskusi%20proyek."
+              href={`https://wa.me/${data.whatsappNumber || "6281234567890"}?text=${encodeURIComponent(data.whatsappMessage || "Halo Ruka Studio, saya ingin diskusi proyek.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-black hover:bg-[#A4855C] text-white px-7 py-3 rounded-none transition-all duration-300 transform hover:scale-[1.02] shadow-[0_8px_20px_rgba(11,34,64,0.12)] border border-[#0B2240]/10"
             >
               <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold">
-                {language === "ID" ? "Diskusikan Bersama Kami" : "Discuss With Us"}
+                {parseDualLanguage(
+                  data.footerButton,
+                  language,
+                  language === "ID" ? "Diskusikan Bersama Kami" : "Discuss With Us"
+                )}
               </span>
               <span className="text-xs font-sans font-normal border-l border-white/20 pl-3.5 group-hover:translate-x-1.5 transition-transform duration-300">
                 →
@@ -116,11 +124,11 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
         <div className="border-t border-[#0B2240]/10 pt-10 mt-6 w-full flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Social linkages in high-end design */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-7 font-mono text-[9px] text-[#0B2240]/55 tracking-[0.2em] uppercase">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
+            <a href={data.instagram || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
               INSTAGRAM
             </a>
             <span className="text-[#0B2240]/15 select-none">/</span>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
+            <a href={data.linkedin || "https://linkedin.com"} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
               LINKEDIN
             </a>
             <span className="text-[#0B2240]/15 select-none">/</span>
@@ -128,7 +136,7 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
               ARCHDAILY
             </a>
             <span className="text-[#0B2240]/15 select-none">/</span>
-            <a href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio" target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
+            <a href={`https://wa.me/${data.whatsappNumber || "6281234567890"}?text=${encodeURIComponent(data.whatsappMessage || "Halo Ruka Studio")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
               PATRONS OFFICE
             </a>
           </div>

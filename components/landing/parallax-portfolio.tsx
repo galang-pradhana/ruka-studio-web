@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
 import { Compass } from "lucide-react";
 import Image from "next/image";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 const content = {
   EN: {
@@ -48,13 +49,8 @@ const ParallaxPortfolio = ({ items, data = {} }: Props) => {
   const { language: lang } = useLanguage();
   const t = content[lang];
 
-  const displayTitle = lang === 'EN' 
-    ? (data.sectionTitleEN || t.title) 
-    : (data.sectionTitleID || data.sectionTitle || t.title);
-
-  const displaySubtitle = lang === 'EN'
-    ? (data.sectionDescriptionEN || t.subtitle)
-    : (data.sectionDescriptionID || data.sectionDescription || t.subtitle);
+  const displayTitle = parseDualLanguage(data.sectionTitle, lang, t.title);
+  const displaySubtitle = parseDualLanguage(data.sectionDescription, lang, t.subtitle);
 
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });

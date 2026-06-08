@@ -10,6 +10,7 @@ import { LpSection, LpContent } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Save, UploadCloud, Loader2 } from "lucide-react";
+import { parseDualLanguage, stringifyDualLanguage } from "@/lib/content-parser";
 
 type FieldDefinition = {
   key: string;
@@ -39,10 +40,10 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
   const [contentMap, setContentMap] = useState<Record<string, string>>(initialContentMap);
   const [uploadingKeys, setUploadingKeys] = useState<Record<string, boolean>>({});
 
-  // Fix hydration: gunakan useRef biasa (bukan inline function di JSX)
+  // Fix hydration: gunakan useRef biasa
   const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
-  // Fix hydration: gunakan useCallback agar ref callback stabil
+  // Fix hydration: gunakan useCallback
   const setFileInputRef = useCallback((key: string) => (el: HTMLInputElement | null) => {
     fileInputRefs.current[key] = el;
   }, []);
@@ -70,7 +71,6 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
       setError(`Terjadi kesalahan saat mengunggah gambar: ${err?.message || "Koneksi terputus"}`);
     } finally {
       setUploadingKeys(prev => ({ ...prev, [fieldKey]: false }));
-      // Reset file input agar bisa upload ulang file yang sama
       if (fileInputRefs.current[fieldKey]) {
         fileInputRefs.current[fieldKey]!.value = "";
       }
@@ -84,19 +84,11 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
     setSuccessMsg(null);
 
     try {
-      const formData = new FormData(e.currentTarget);
       const data: Record<string, string> = {};
 
       fields.forEach((field) => {
-        if (field.type === "image" || field.type === "toggle") {
-          // image & toggle fields dikelola lewat state
-          data[field.key] = contentMap[field.key] ?? (field.fallback || "");
-        } else {
-          const val = formData.get(field.key);
-          if (val !== null) {
-            data[field.key] = val.toString();
-          }
-        }
+        // Semuanya diambil langsung dari contentMap state
+        data[field.key] = contentMap[field.key] ?? (field.fallback || "");
       });
 
       const res = await saveSectionContent(section, data);
@@ -116,11 +108,27 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
     }
   }
 
-  const getValue = (key: string, fallback?: string) =>
+  const getRawValue = (key: string, fallback?: string) =>
     contentMap[key] !== undefined ? contentMap[key] : (fallback || "");
 
+  const getDualLangValue = (key: string, lang: 'id'|'en', fallback?: string) => {
+    const rawVal = getRawValue(key, fallback);
+    return parseDualLanguage(rawVal, lang, fallback);
+  };
+
+  const handleDualLangChange = (key: string, lang: 'id'|'en', value: string, fallback?: string) => {
+    const currentRaw = getRawValue(key, fallback);
+    const currentId = parseDualLanguage(currentRaw, 'id', fallback);
+    const currentEn = parseDualLanguage(currentRaw, 'en', fallback);
+
+    const newId = lang === 'id' ? value : currentId;
+    const newEn = lang === 'en' ? value : currentEn;
+
+    setContentMap(prev => ({ ...prev, [key]: stringifyDualLanguage(newId, newEn) }));
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl bg-white p-6 border border-gray-200">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl bg-white p-6 border border-gray-200">
       {error && (
         <div className="bg-red-50 text-red-600 p-3 text-sm border border-red-100 rounded">
           {error}
@@ -134,27 +142,38 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
       )}
 
       {fields.map((field) => (
-        <div key={field.key} className="space-y-2">
-          <Label htmlFor={field.key}>{field.label}</Label>
+        <div key={field.key} className="space-y-4 pt-4 border-t border-gray-100 first:border-0 first:pt-0">
+          <Label className="text-base font-semibold">{field.label}</Label>
 
           {field.type === "textarea" ? (
-            <textarea
-              id={field.key}
-              name={field.key}
-              // Gunakan value + onChange (controlled) untuk hindari hydration mismatch
-              value={getValue(field.key, field.fallback)}
-              onChange={(e) =>
-                setContentMap(prev => ({ ...prev, [field.key]: e.target.value }))
-              }
-              rows={4}
-              className="w-full flex min-h-[80px] rounded-none border border-gray-300 bg-background px-3 py-2 text-sm focus-visible:outline-none focus:border-[#1B3B5A]"
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">🇮🇩 Indonesia</span>
+                <textarea
+                  id={`${field.key}-id`}
+                  value={getDualLangValue(field.key, 'id', field.fallback)}
+                  onChange={(e) => handleDualLangChange(field.key, 'id', e.target.value, field.fallback)}
+                  rows={4}
+                  className="w-full flex min-h-[80px] rounded-none border border-gray-300 bg-background px-3 py-2 text-sm focus-visible:outline-none focus:border-[#1B3B5A]"
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">🇬🇧 English</span>
+                <textarea
+                  id={`${field.key}-en`}
+                  value={getDualLangValue(field.key, 'en', field.fallback)}
+                  onChange={(e) => handleDualLangChange(field.key, 'en', e.target.value, field.fallback)}
+                  rows={4}
+                  className="w-full flex min-h-[80px] rounded-none border border-gray-300 bg-background px-3 py-2 text-sm focus-visible:outline-none focus:border-[#1B3B5A]"
+                />
+              </div>
+            </div>
           ) : field.type === "image" ? (
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <div className="relative w-full sm:w-48 aspect-video bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
-                {getValue(field.key, field.fallback) ? (
+                {getRawValue(field.key, field.fallback) ? (
                   <Image
-                    src={getValue(field.key, field.fallback)}
+                    src={getRawValue(field.key, field.fallback)}
                     alt="Preview"
                     fill
                     className="object-cover"
@@ -171,7 +190,6 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
                 )}
               </div>
               <div className="flex-1 space-y-2 w-full">
-                {/* Fix hydration: ref pakai useCallback, bukan inline arrow */}
                 <input
                   type="file"
                   accept="image/*"
@@ -189,7 +207,7 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
                   <UploadCloud className="w-4 h-4 mr-2" />
                   {uploadingKeys[field.key]
                     ? "Mengunggah..."
-                    : getValue(field.key, field.fallback)
+                    : getRawValue(field.key, field.fallback)
                     ? "Ganti Gambar"
                     : "Unggah Gambar"}
                 </Button>
@@ -203,9 +221,9 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
               <button
                 type="button"
                 role="switch"
-                aria-checked={getValue(field.key, field.fallback) !== "false"}
+                aria-checked={getRawValue(field.key, field.fallback) !== "false"}
                 onClick={() => {
-                  const current = getValue(field.key, field.fallback);
+                  const current = getRawValue(field.key, field.fallback);
                   setContentMap(prev => ({
                     ...prev,
                     [field.key]: current === "false" ? "true" : "false",
@@ -214,14 +232,14 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
                 className="relative inline-flex h-6 w-11 items-center rounded-none transition-colors focus:outline-none focus:ring-2 focus:ring-[#1B3B5A] focus:ring-offset-2 flex-shrink-0"
                 style={{
                   backgroundColor:
-                    getValue(field.key, field.fallback) !== "false" ? "#1B3B5A" : "#D1D5DB",
+                    getRawValue(field.key, field.fallback) !== "false" ? "#1B3B5A" : "#D1D5DB",
                 }}
               >
                 <span
                   className="inline-block h-4 w-4 transform rounded-none bg-white transition-transform"
                   style={{
                     transform:
-                      getValue(field.key, field.fallback) !== "false"
+                      getRawValue(field.key, field.fallback) !== "false"
                         ? "translateX(22px)"
                         : "translateX(2px)",
                   }}
@@ -229,7 +247,7 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
               </button>
               <div>
                 <p className="text-sm font-medium text-gray-800">
-                  {getValue(field.key, field.fallback) !== "false"
+                  {getRawValue(field.key, field.fallback) !== "false"
                     ? "✅ Ditampilkan di website"
                     : "⬜ Disembunyikan dari website"}
                 </p>
@@ -237,21 +255,32 @@ export default function SectionForm({ section, fields, initialData }: SectionFor
               </div>
             </div>
           ) : (
-            // text field: controlled untuk konsistensi
-            <Input
-              id={field.key}
-              name={field.key}
-              value={getValue(field.key, field.fallback)}
-              onChange={(e) =>
-                setContentMap(prev => ({ ...prev, [field.key]: e.target.value }))
-              }
-              className="rounded-none border-gray-300 focus:border-[#1B3B5A]"
-            />
+            // text field: Dual Language
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">🇮🇩 Indonesia</span>
+                <Input
+                  id={`${field.key}-id`}
+                  value={getDualLangValue(field.key, 'id', field.fallback)}
+                  onChange={(e) => handleDualLangChange(field.key, 'id', e.target.value, field.fallback)}
+                  className="rounded-none border-gray-300 focus:border-[#1B3B5A]"
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">🇬🇧 English</span>
+                <Input
+                  id={`${field.key}-en`}
+                  value={getDualLangValue(field.key, 'en', field.fallback)}
+                  onChange={(e) => handleDualLangChange(field.key, 'en', e.target.value, field.fallback)}
+                  className="rounded-none border-gray-300 focus:border-[#1B3B5A]"
+                />
+              </div>
+            </div>
           )}
         </div>
       ))}
 
-      <div className="pt-4">
+      <div className="pt-6">
         <Button
           type="submit"
           disabled={isPending}

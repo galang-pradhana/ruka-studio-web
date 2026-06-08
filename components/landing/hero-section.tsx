@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 export function HeroSection({ data = {} }: { data?: Record<string, string> }) {
   const containerRef = useRef<HTMLElement>(null);
+  const { language } = useLanguage();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -16,15 +19,23 @@ export function HeroSection({ data = {} }: { data?: Record<string, string> }) {
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   // Data bindings with fallbacks based on Editorial Minimalist style
-  let headline = data.headline || "RUKA STUDIO";
+  let headline = parseDualLanguage(data.headline, language, "RUKA STUDIO");
   if (headline === "INTEGRITAS") {
     headline = "RUKA STUDIO"; // Remove "INTEGRITAS" fallback
   }
 
-  const topLabelCenter = "FEATURED ARCHITECTURE & DESIGN STUDIO";
+  const topLabelCenter = parseDualLanguage(data.tagline, language, "FEATURED ARCHITECTURE & DESIGN STUDIO");
 
-  const rightTitle = data.rightTitle || "KAMI MEMADUKAN ALAM & KENYAMANAN HUNIAN";
-  const rightSubtitle = data.rightSubtitle || "Setiap ruang dirancang dengan presisi untuk harmoni sejati. Menciptakan pendekatan minimalis untuk membangun kepercayaan klien.";
+  const rightTitle = parseDualLanguage(data.rightTitle, language, "KAMI MEMADUKAN ALAM & KENYAMANAN HUNIAN");
+  const rightSubtitle = parseDualLanguage(data.rightSubtitle || data.subheadline, language, "Setiap ruang dirancang dengan presisi untuk harmoni sejati. Menciptakan pendekatan minimalis untuk membangun kepercayaan klien.");
+
+  const pengantarTitle = language === 'ID' ? "Pengantar" : "Introduction";
+  const pengantarDesc = language === 'ID' 
+    ? "Pendekatan minimalis yang terukur, material pilihan, dan bentuk arsitektur esensial — semua ini adalah filosofi dasar yang melekat pada Ruka Studio. Kami berdedikasi menciptakan ruang yang menginspirasi dan fungsional."
+    : "A measured minimalist approach, selected materials, and essential architectural forms — these are the core philosophies inherent in Ruka Studio. We are dedicated to creating inspiring and functional spaces.";
+  
+  const tugasTitle = language === 'ID' ? "Tugas Utama" : "Core Task";
+
   
   return (
     <div className="flex flex-col w-full">
@@ -102,9 +113,9 @@ export function HeroSection({ data = {} }: { data?: Record<string, string> }) {
             <div className="flex flex-col md:flex-row gap-8">
               <span className="text-xs font-semibold text-primary">01 /</span>
               <div>
-                <h3 className="text-lg font-bold text-foreground mb-6">Pengantar</h3>
+                <h3 className="text-lg font-bold text-foreground mb-6">{pengantarTitle}</h3>
                 <p className="text-sm md:text-base text-foreground/80 leading-relaxed font-light">
-                  Pendekatan minimalis yang terukur, material pilihan, dan bentuk arsitektur esensial — semua ini adalah filosofi dasar yang melekat pada Ruka Studio. Kami berdedikasi menciptakan ruang yang menginspirasi dan fungsional.
+                  {pengantarDesc}
                 </p>
               </div>
             </div>
@@ -114,7 +125,7 @@ export function HeroSection({ data = {} }: { data?: Record<string, string> }) {
               <span className="text-xs font-semibold text-primary md:hidden">02 /</span>
               <div className="md:max-w-md w-full">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-lg font-bold text-foreground">Tugas Utama</h3>
+                  <h3 className="text-lg font-bold text-foreground">{tugasTitle}</h3>
                   <span className="hidden md:inline-block text-xs font-bold text-accent uppercase tracking-widest text-right">About the Project</span>
                 </div>
                 <h4 className="text-md font-bold text-primary mb-3 uppercase tracking-wider">{rightTitle}</h4>

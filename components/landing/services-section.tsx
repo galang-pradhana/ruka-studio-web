@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/language-context";
 import Image from "next/image";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 interface ServiceType {
   id: string;
@@ -75,40 +76,35 @@ function ServiceItem({
 export function ServicesSection({ data = {} }: { data?: Record<string, string> }) {
   const { language } = useLanguage();
 
-  const sectionTitle = language === 'EN'
-    ? (data.sectionTitleEN || "Our Services")
-    : (data.sectionTitleID || data.sectionTitle || "Layanan Kami");
+  const sectionTitle = parseDualLanguage(data.sectionTitle, language, language === 'ID' ? "Layanan Kami" : "Our Services");
 
-  const sectionDescription = 
-    (language === 'EN' ? data.sectionDescriptionEN : data.sectionDescriptionID) || 
-    data.sectionDescription || 
-    (language === 'EN' 
-      ? "From initial idea to final build, we create designs that look beautiful and work perfectly for your daily life." 
-      : "Dari ide awal hingga tahap pembangunan, kami merancang hunian yang tampil indah dan berfungsi maksimal untuk keseharian Anda.");
+  const sectionDescription = parseDualLanguage(data.sectionDescription, language, language === 'ID' 
+      ? "Dari ide awal hingga tahap pembangunan, kami merancang hunian yang tampil indah dan berfungsi maksimal untuk keseharian Anda."
+      : "From initial idea to final build, we create designs that look beautiful and work perfectly for your daily life.");
 
   const services: ServiceType[] = [
     {
       id: "01",
-      title: (language === 'EN' ? data.service1NameEN : data.service1NameID) || data.service1Name || (language === 'EN' ? "Concept & Direction" : "Konsep & Arahan"),
-      description: (language === 'EN' ? data.service1DescEN : data.service1DescID) || data.service1Desc || (language === 'EN' ? "We shape your ideas into clear architectural plans: spaces, lines, and mood. A design built to last." : "Kami mewujudkan ide Anda ke dalam rancangan arsitektur yang nyata: tata ruang, garis, dan suasana. Desain yang bertahan melintasi waktu."),
+      title: parseDualLanguage(data.service1Name, language, language === 'ID' ? "Konsep & Arahan" : "Concept & Direction"),
+      description: parseDualLanguage(data.service1Desc, language, language === 'ID' ? "Kami mewujudkan ide Anda ke dalam rancangan arsitektur yang nyata: tata ruang, garis, dan suasana. Desain yang bertahan melintasi waktu." : "We shape your ideas into clear architectural plans: spaces, lines, and mood. A design built to last."),
       imgUrl: data.service1Image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
     },
     {
       id: "02",
-      title: (language === 'EN' ? data.service2NameEN : data.service2NameID) || data.service2Name || (language === 'EN' ? "Spatial Organization" : "Organisasi Ruang"),
-      description: (language === 'EN' ? data.service2DescEN : data.service2DescID) || data.service2Desc || (language === 'EN' ? "We map out the floor plan and refine how you move through the home. Every space is designed to feel natural and easy to use." : "Kami menyusun denah dan memastikan alur pergerakan di dalam rumah terasa nyaman. Setiap sudut dirancang agar natural dan mudah digunakan."),
+      title: parseDualLanguage(data.service2Name, language, language === 'ID' ? "Organisasi Ruang" : "Spatial Organization"),
+      description: parseDualLanguage(data.service2Desc, language, language === 'ID' ? "Kami menyusun denah dan memastikan alur pergerakan di dalam rumah terasa nyaman. Setiap sudut dirancang agar natural dan mudah digunakan." : "We map out the floor plan and refine how you move through the home. Every space is designed to feel natural and easy to use."),
       imgUrl: data.service2Image || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
     },
     {
       id: "03",
-      title: (language === 'EN' ? data.service3NameEN : data.service3NameID) || data.service3Name || (language === 'EN' ? "Materials & Details" : "Material & Detail"),
-      description: (language === 'EN' ? data.service3DescEN : data.service3DescID) || data.service3Desc || (language === 'EN' ? "We select the right materials, lighting, and textures. These details give your home depth, character, and warmth." : "Kami memilih material, pencahayaan, dan tekstur yang tepat. Detail-detail inilah yang memberi karakter dan kehangatan pada rumah Anda."),
+      title: parseDualLanguage(data.service3Name, language, language === 'ID' ? "Material & Detail" : "Materials & Details"),
+      description: parseDualLanguage(data.service3Desc, language, language === 'ID' ? "Kami memilih material, pencahayaan, dan tekstur yang tepat. Detail-detail inilah yang memberi karakter dan kehangatan pada rumah Anda." : "We select the right materials, lighting, and textures. These details give your home depth, character, and warmth."),
       imgUrl: data.service3Image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
     },
     {
       id: "04",
-      title: (language === 'EN' ? data.service4NameEN : data.service4NameID) || data.service4Name || (language === 'EN' ? "Execution & Supervision" : "Persiapan & Pengawasan"),
-      description: (language === 'EN' ? data.service4DescEN : data.service4DescID) || data.service4Desc || (language === 'EN' ? "We manage the build, coordinate the team, and oversee the work. We keep the construction process organized and on track." : "Kami mengelola proses pembangunan, mengoordinasikan tim, dan mengawasi pekerjaan agar konstruksi berjalan lancar dan terencana."),
+      title: parseDualLanguage(data.service4Name, language, language === 'ID' ? "Persiapan & Pengawasan" : "Execution & Supervision"),
+      description: parseDualLanguage(data.service4Desc, language, language === 'ID' ? "Kami mengelola proses pembangunan, mengoordinasikan tim, dan mengawasi pekerjaan agar konstruksi berjalan lancar dan terencana." : "We manage the build, coordinate the team, and oversee the work. We keep the construction process organized and on track."),
       imgUrl: data.service4Image || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
     }
   ];

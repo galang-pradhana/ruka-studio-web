@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 interface AboutHeroProps {
   data?: Record<string, string>;
@@ -11,30 +12,37 @@ interface AboutHeroProps {
 
 export function AboutHeroSection({
   data = {},
-  title,
-  subtitle,
-  eyebrow,
+  title: overrideTitle,
+  subtitle: overrideSubtitle,
+  eyebrow: overrideEyebrow,
 }: AboutHeroProps) {
   const { language } = useLanguage();
 
-  // Resolution logic: check if explicitly passed prop exists, else check DB data based on language, else static fallback
-  const heroTitle = language === 'EN'
-    ? (data.heroTitleEN || "About Ruka Studio.")
-    : (data.heroTitleID || data.heroTitle || "Tentang Ruka Studio.");
+  const heroTitle = overrideTitle || parseDualLanguage(data.heroTitle, language, language === 'ID' ? "Tentang Ruka Studio." : "About Ruka Studio.");
 
-  const heroSubtitle = language === 'EN'
-    ? (subtitle || data.heroSubtitleEN || "A construction consultancy believing that buildings are not just structures — they are the framework for life.")
-    : (subtitle || data.heroSubtitleID || data.heroSubtitle || "Konsultan konstruksi yang percaya bahwa bangunan bukan sekadar struktur — ia adalah kerangka bagi kehidupan.");
+  const heroSubtitle = overrideSubtitle || parseDualLanguage(data.heroSubtitle, language, language === 'ID' 
+    ? "Kami adalah kolektif arsitek dan desainer yang percaya bahwa bangunan bukan sekadar struktur — ia adalah kerangka bagi kehidupan." 
+    : "We are a collective of architects and designers who believe a building is not just a structure — it is a framework for life.");
 
-  const heroEyebrow = language === 'EN'
-    ? (eyebrow || data.heroEyebrowEN || "Our Philosophy")
-    : (eyebrow || data.heroEyebrowID || data.heroEyebrow || "Filosofi Kami");
+  const heroEyebrow = overrideEyebrow || parseDualLanguage(data.heroEyebrow, language, language === 'ID' ? "Studio Kami" : "Our Studio");
+
+  const sectionImage = data.aboutHeroImage || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80";
 
   return (
     <section
       className="relative pt-40 pb-32 overflow-hidden"
       style={{ backgroundColor: "#FCFAF6" }}
     >
+      {/* Fallback image as very subtle background layer */}
+      <div 
+        className="absolute inset-0 w-full h-full opacity-[0.03] mix-blend-multiply pointer-events-none"
+        style={{
+          backgroundImage: `url('${sectionImage}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+
       {/* Subtle diagonal grain texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.015]"

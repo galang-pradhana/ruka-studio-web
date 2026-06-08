@@ -348,19 +348,19 @@ export default function ClientHome({
           </div>
         </section>
 
-        <PhilosophySection />
+        <PhilosophySection data={contentMap?.PHILOSOPHY || {}} />
 
         <ParallaxPortfolio items={portfolioItems} data={contentMap?.PORTFOLIO || {}} />
 
         <div className="relative z-40 bg-[#FCFAF6]">
-          <AboutHeroSection data={contentMap?.ABOUT || {}} />
+          <AboutHeroSection data={contentMap?.ABOUT_HERO || {}} />
           <ProcessStackedCards data={contentMap?.PROCESS || {}} />
           <WhyUsSection data={contentMap?.WHY_US || {}} />
-          <ServicesSection data={contentMap?.SERVICES || {}} />
-          <OurTeamSection data={contentMap?.TEAM || {}} />
-          <TestimonialsSection data={contentMap?.TESTIMONIALS || {}} />
-          <FAQSection />
-          <ProjectBriefSection />
+          <ServicesSection data={contentMap?.SERVICE || {}} />
+          <OurTeamSection data={contentMap?.OUR_TEAM || {}} />
+          <TestimonialsSection data={contentMap?.TESTIMONIAL || {}} />
+          <FAQSection data={contentMap?.FAQ || {}} />
+          <ProjectBriefSection data={contentMap?.PROJECT_BRIEF || {}} />
         </div>
       </div>
     </div>

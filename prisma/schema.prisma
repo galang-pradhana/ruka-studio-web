@@ -47,6 +47,12 @@ enum LpSection {
   CONTACT
   WHY_US
   OUR_TEAM
+  PHILOSOPHY
+  ABOUT_HERO
+  PROCESS
+  FAQ
+  PROJECT_BRIEF
+  FOOTER
 }
 
 model User {

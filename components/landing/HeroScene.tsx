@@ -9,6 +9,7 @@ import { BACKGROUNDS } from './types';
 import { clamp } from './utils';
 import { SupportedLanguages, TRANSLATIONS } from './translations';
 import Image from "next/image";
+import { parseDualLanguage } from '@/lib/content-parser';
 
 interface HeroSceneProps {
   scrollProgress: number;
@@ -25,13 +26,13 @@ export default function HeroScene({ scrollProgress, heroScrollProgress, lang, ac
   
   const t = {
     ...fallbackT,
-    tagline: heroContent.tagline || "",
-    headline: heroContent.headline || fallbackT.heroTitle,
-    subheadline: heroContent.subheadline || fallbackT.heroSubDesktop,
-    viewWork: heroContent.ctaText || fallbackT.navWork,
-    heroBadge: heroContent.badgeText || "",
-    rightTitle: heroContent.rightTitle || "",
-    rightValue: heroContent.rightValue || "",
+    tagline: parseDualLanguage(heroContent.tagline, lang, ""),
+    headline: parseDualLanguage(heroContent.headline, lang, fallbackT.heroTitle),
+    subheadline: parseDualLanguage(heroContent.subheadline, lang, fallbackT.heroSubDesktop),
+    viewWork: parseDualLanguage(heroContent.ctaText, lang, fallbackT.navWork),
+    heroBadge: parseDualLanguage(heroContent.badgeText, lang, ""),
+    rightTitle: parseDualLanguage(heroContent.rightTitle, lang, ""),
+    rightValue: parseDualLanguage(heroContent.rightValue, lang, ""),
   };
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);

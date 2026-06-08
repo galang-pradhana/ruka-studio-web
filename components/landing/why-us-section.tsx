@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 interface WhyUsProps {
   data?: Record<string, string>;
@@ -10,41 +11,39 @@ interface WhyUsProps {
 export function WhyUsSection({ data }: WhyUsProps) {
   const { language } = useLanguage();
 
-  const title = language === 'EN'
-    ? (data?.titleEN || "WHY US")
-    : (data?.titleID || data?.title || "MENGAPA KAMI");
+  const title = parseDualLanguage(data?.title, language, language === 'ID' ? "MENGAPA KAMI" : "WHY US");
 
-  const description = language === 'EN'
-    ? (data?.descriptionEN || "We design spaces that matter, built with care and the best materials.")
-    : (data?.descriptionID || data?.description || "Kami merancang ruang yang berharga, dibangun dengan cermat menggunakan material terbaik.");
+  const description = parseDualLanguage(data?.description, language, language === 'ID' 
+    ? "Kami merancang ruang yang berharga, dibangun dengan cermat menggunakan material terbaik." 
+    : "We design spaces that matter, built with care and the best materials.");
 
   const stats = [
     { 
-      value: language === 'EN' ? (data?.stat1ValueEN || "250+") : (data?.stat1ValueID || data?.stat1Value || "250+"), 
-      label: language === 'EN' ? (data?.stat1LabelEN || "Completed Projects") : (data?.stat1LabelID || data?.stat1Label || "Proyek Selesai") 
+      value: parseDualLanguage(data?.stat1Value, language, "250+"), 
+      label: parseDualLanguage(data?.stat1Label, language, language === 'ID' ? "Proyek Selesai" : "Completed Projects") 
     },
     { 
-      value: language === 'EN' ? (data?.stat2ValueEN || "15+") : (data?.stat2ValueID || data?.stat2Value || "15+"), 
-      label: language === 'EN' ? (data?.stat2LabelEN || "Years Experience") : (data?.stat2LabelID || data?.stat2Label || "Tahun Pengalaman") 
+      value: parseDualLanguage(data?.stat2Value, language, "15+"), 
+      label: parseDualLanguage(data?.stat2Label, language, language === 'ID' ? "Tahun Pengalaman" : "Years Experience") 
     },
     { 
-      value: language === 'EN' ? (data?.stat3ValueEN || "98%") : (data?.stat3ValueID || data?.stat3Value || "98%"), 
-      label: language === 'EN' ? (data?.stat3LabelEN || "Happy Clients") : (data?.stat3LabelID || data?.stat3Label || "Klien Puas") 
+      value: parseDualLanguage(data?.stat3Value, language, "98%"), 
+      label: parseDualLanguage(data?.stat3Label, language, language === 'ID' ? "Klien Puas" : "Happy Clients") 
     },
   ];
 
   const points = [
     {
-      title: language === 'EN' ? (data?.point1EN || "Premium Materials") : (data?.point1ID || data?.point1 || "Material Premium"),
-      desc: language === 'EN' ? (data?.point1DescEN || "We carefully select materials that look great and stand the test of time.") : (data?.point1DescID || data?.point1Desc || "Kami memilih material yang tahan lama dan tetap terlihat indah bertahun-tahun kemudian."),
+      title: parseDualLanguage(data?.point1, language, language === 'ID' ? "Material Premium" : "Premium Materials"),
+      desc: parseDualLanguage(data?.point1Desc, language, language === 'ID' ? "Kami memilih material yang tahan lama dan tetap terlihat indah bertahun-tahun kemudian." : "We carefully select materials that look great and stand the test of time."),
     },
     {
-      title: language === 'EN' ? (data?.point2EN || "Sustainable Design") : (data?.point2ID || data?.point2 || "Desain Berkelanjutan"),
-      desc: language === 'EN' ? (data?.point2DescEN || "We design homes that balance daily function with lasting beauty.") : (data?.point2DescID || data?.point2Desc || "Kami merancang hunian yang menyeimbangkan fungsi harian dengan keindahan visual."),
+      title: parseDualLanguage(data?.point2, language, language === 'ID' ? "Desain Berkelanjutan" : "Sustainable Design"),
+      desc: parseDualLanguage(data?.point2Desc, language, language === 'ID' ? "Kami merancang hunian yang menyeimbangkan fungsi harian dengan keindahan visual." : "We design homes that balance daily function with lasting beauty."),
     },
     {
-      title: language === 'EN' ? (data?.point3EN || "Precision Execution") : (data?.point3ID || data?.point3 || "Eksekusi Presisi"),
-      desc: language === 'EN' ? (data?.point3DescEN || "Our team ensures every detail is built right and finished on schedule.") : (data?.point3DescID || data?.point3Desc || "Tim kami memastikan setiap detail terbangun dengan benar dan selesai tepat waktu."),
+      title: parseDualLanguage(data?.point3, language, language === 'ID' ? "Eksekusi Presisi" : "Precision Execution"),
+      desc: parseDualLanguage(data?.point3Desc, language, language === 'ID' ? "Tim kami memastikan setiap detail terbangun dengan benar dan selesai tepat waktu." : "Our team ensures every detail is built right and finished on schedule."),
     },
   ];
 

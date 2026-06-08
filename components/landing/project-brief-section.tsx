@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { useLanguage } from "@/contexts/language-context";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { parseDualLanguage } from "@/lib/utils";
+import Image from "next/image";
 
-export function ProjectBriefSection() {
+export function ProjectBriefSection({ data = {} }: { data?: Record<string, string> }) {
   const { language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   
@@ -88,13 +90,27 @@ export function ProjectBriefSection() {
     window.open(waUrl, '_blank');
   };
 
+  const projectBriefImage = data.projectBriefImage || "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1600&q=80";
+
   return (
     <section
       id="project-planner"
-      className="py-[100px] md:py-[120px] overflow-hidden"
+      className="py-[100px] md:py-[120px] overflow-hidden relative"
       style={{ backgroundColor: "#FCFAF6", borderTop: "1px solid rgba(10,6,8,0.06)" }}
     >
-      <div className="max-w-[1000px] mx-auto px-6 md:px-14">
+      {/* Fallback Background Image */}
+      {projectBriefImage && (
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
+          <Image
+            src={projectBriefImage}
+            alt="Project Brief Background"
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      <div className="max-w-[1000px] mx-auto px-6 md:px-14 relative z-10">
         
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -111,7 +127,7 @@ export function ProjectBriefSection() {
                   color: "#A4855C",
                 }}
               >
-                {language === 'EN' ? "PROJECT BRIEF PLANNER" : "RANCANG BRIEF PROYEK"}
+                {parseDualLanguage(data.projectBriefEyebrow, language, language === 'EN' ? "PROJECT BRIEF PLANNER" : "RANCANG BRIEF PROYEK")}
               </p>
               <h2
                 className="font-bold mb-4 text-left"
@@ -123,7 +139,7 @@ export function ProjectBriefSection() {
                   color: "#0B2240",
                 }}
               >
-                {language === 'EN' ? "Form the inception." : "Awali rencana Anda."}
+                {parseDualLanguage(data.projectBriefTitle, language, language === 'EN' ? "Form the inception." : "Awali rencana Anda.")}
               </h2>
               <p
                 style={{
@@ -135,9 +151,13 @@ export function ProjectBriefSection() {
                 }}
                 className="max-w-md text-left"
               >
-                {language === 'EN' 
-                  ? "Define your spatial goals in 4 simple steps. We will review this brief prior to our initial architectural consultation." 
-                  : "Gambarkan rencana hunian Anda dalam 4 langkah praktis. Tim kami akan meninjau draf brief ini sebelum sesi konsultasi awal."}
+                {parseDualLanguage(
+                  data.projectBriefDesc,
+                  language,
+                  language === 'EN' 
+                    ? "Define your spatial goals in 4 simple steps. We will review this brief prior to our initial architectural consultation." 
+                    : "Gambarkan rencana hunian Anda dalam 4 langkah praktis. Tim kami akan meninjau draf brief ini sebelum sesi konsultasi awal."
+                )}
               </p>
             </div>
 

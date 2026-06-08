@@ -36,6 +36,8 @@ export default async function PublicLayout({
   };
 
   const contactData = toMap(contentMap["CONTACT"]);
+  const footerData = toMap(contentMap["FOOTER"]);
+  const mergedData = { ...contactData, ...footerData };
 
   return (
     <div
@@ -55,7 +57,7 @@ export default async function PublicLayout({
         {children}
       </div>
       {/* Global Footer — renders on all public pages including homepage */}
-      <LandingFooter data={contactData} />
+      <LandingFooter data={mergedData} />
     </div>
   );
 }

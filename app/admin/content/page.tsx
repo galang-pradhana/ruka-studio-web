@@ -64,7 +64,6 @@ const SECTION_FIELDS = {
     { key: "whatsappMessage", label: "Pesan WhatsApp Default", type: "text" as const, fallback: "Halo Ruka Studio, saya ingin konsultasi proyek." },
     { key: "instagram", label: "Link Instagram", type: "text" as const, fallback: "https://instagram.com/rukastudio" },
     { key: "linkedin", label: "Link LinkedIn", type: "text" as const, fallback: "https://linkedin.com/company/rukastudio" },
-    { key: "footerImage", label: "📷 Gambar Background CTA Footer", type: "image" as const, fallback: "/images/hero-1.jpg" },
   ],
   [LpSection.WHY_US]: [
     { key: "title", label: "Judul Section (Mengapa Kami)", type: "text" as const, fallback: "MENGAPA KAMI" },
@@ -106,6 +105,66 @@ const SECTION_FIELDS = {
     { key: "member4Role", label: "Jabatan Anggota 4", type: "text" as const, fallback: "3D Visualizer" },
     { key: "member4Image", label: "📷 Foto Anggota 4", type: "image" as const, fallback: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
     { key: "member4Visible", label: "Tampilkan Anggota 4 di Website", type: "toggle" as const, fallback: "false" },
+  ],
+  [LpSection.PHILOSOPHY]: [
+    { key: "philosophyEyebrow", label: "Label Kecil Atas", type: "text" as const, fallback: "Filosofi Desain" },
+    { key: "philosophyTitle", label: "Judul Utama", type: "text" as const, fallback: "Merancang Ruang untuk Kehidupan yang Sebenarnya." },
+    { key: "philosophyDesc", label: "Deskripsi Filosofi", type: "textarea" as const, fallback: "Kami percaya bahwa rumah yang baik bukan sekadar bangunan. Ini tentang bagaimana cahaya alami, material yang jujur, dan tata ruang yang cerdas menyatu untuk membuat hidup Anda lebih baik." },
+    { key: "philosophyImage", label: "📷 Gambar Background/Ilustrasi", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600607688969-a5bfcd64bd40?w=1600&q=80" },
+  ],
+  [LpSection.ABOUT_HERO]: [
+    { key: "heroEyebrow", label: "Label Kecil Atas", type: "text" as const, fallback: "Studio Kami" },
+    { key: "heroTitle", label: "Judul Utama Bawah", type: "text" as const, fallback: "Tentang Ruka Studio." },
+    { key: "heroSubtitle", label: "Quote Besar Tengah", type: "textarea" as const, fallback: "Kami adalah kolektif arsitek dan desainer yang percaya bahwa bangunan bukan sekadar struktur — ia adalah kerangka bagi kehidupan." },
+    { key: "aboutHeroImage", label: "📷 Gambar Background/Ilustrasi", type: "image" as const, fallback: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80" },
+  ],
+  [LpSection.PROCESS]: [
+    { key: "process1Title", label: "Judul Proses 1", type: "text" as const, fallback: "Sketsa Desain" },
+    { key: "process1Desc", label: "Deskripsi Proses 1", type: "textarea" as const, fallback: "Kami memulai dengan kunjungan lokasi dan konsultasi kreatif untuk menentukan visi, gaya, dan kebutuhan fungsional Anda. Berdasarkan ini, kami membuat serangkaian sketsa desain tangan untuk memberikan konsep visual awal yang mencerminkan brief Anda." },
+    { key: "process1Image", label: "📷 Gambar Proses 1", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600607687930-cebc5a73e513?q=80&w=800&auto=format&fit=crop" },
+    { key: "process2Title", label: "Judul Proses 2", type: "text" as const, fallback: "Pengembangan Desain" },
+    { key: "process2Desc", label: "Deskripsi Proses 2", type: "textarea" as const, fallback: "Di sini kami mengembangkan sketsa awal dengan semua detail — termasuk pemilihan material bangunan, denah lantai, layout, desain joinery indikatif, dan alur ruang." },
+    { key: "process2Image", label: "📷 Gambar Proses 2", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" },
+    { key: "process3Title", label: "Judul Proses 3", type: "text" as const, fallback: "Aplikasi Pengembangan" },
+    { key: "process3Desc", label: "Deskripsi Proses 3", type: "textarea" as const, fallback: "Tidak semua proyek memerlukan aplikasi pengembangan. Jika proyek Anda memerlukannya, kami akan mengkoordinasikan seluruh proses — termasuk pengumpulan dokumentasi, penyiapan dan pengajuan aplikasi." },
+    { key: "process3Image", label: "📷 Gambar Proses 3", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600607687931-18e38e8cb504?q=80&w=800&auto=format&fit=crop" },
+    { key: "process4Title", label: "Judul Proses 4", type: "text" as const, fallback: "Desain Interior" },
+    { key: "process4Desc", label: "Deskripsi Proses 4", type: "textarea" as const, fallback: "Kami merancang konsep desain interior yang menciptakan alur, kontras, dan keseimbangan dengan desain arsitektur dan visi keseluruhan rumah Anda." },
+    { key: "process4Image", label: "📷 Gambar Proses 4", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop" },
+    { key: "process5Title", label: "Judul Proses 5", type: "text" as const, fallback: "Persetujuan Bangunan" },
+    { key: "process5Desc", label: "Deskripsi Proses 5", type: "textarea" as const, fallback: "Semua proyek arsitektur memerlukan Persetujuan Bangunan. Tim kami akan menasihati, memandu, mengkoordinasikan, dan mengelola semua rencana serta aplikasi persetujuan bangunan Anda." },
+    { key: "process5Image", label: "📷 Gambar Proses 5", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" },
+    { key: "process6Title", label: "Judul Proses 6", type: "text" as const, fallback: "Rencana Konstruksi" },
+    { key: "process6Desc", label: "Deskripsi Proses 6", type: "textarea" as const, fallback: "Dengan semua detail desain selesai, kami beralih ke pembuatan rencana, gambar, dan dokumen konstruksi yang akan memandu builder dalam mewujudkan desain." },
+    { key: "process6Image", label: "📷 Gambar Proses 6", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600585154526-990dced4ea0d?q=80&w=800&auto=format&fit=crop" },
+  ],
+  [LpSection.FAQ]: [
+    { key: "faqEyebrow", label: "Label Kecil Atas", type: "text" as const, fallback: "PERTANYAAN UMUM" },
+    { key: "faqTitle", label: "Judul FAQ", type: "text" as const, fallback: "Yang sering ditanyakan." },
+    { key: "faqDesc", label: "Deskripsi", type: "textarea" as const, fallback: "Semua hal yang perlu Anda ketahui sebelum merencanakan hunian impian bersama kami." },
+    { key: "faq1Question", label: "Pertanyaan 1", type: "text" as const, fallback: "Apakah Ruka Studio melayani pembangunan fisik atau hanya jasa desain?" },
+    { key: "faq1Answer", label: "Jawaban 1", type: "textarea" as const, fallback: "Kami berfokus penuh sebagai konsultan & perencana konstruksi. Untuk pelaksanaan fisik pembangunan, kami dapat merekomendasikan kontraktor rekanan tepercaya." },
+    { key: "faq2Question", label: "Pertanyaan 2", type: "text" as const, fallback: "Di mana saja jangkauan wilayah proyek Ruka Studio?" },
+    { key: "faq2Answer", label: "Jawaban 2", type: "textarea" as const, fallback: "Studio fisik kami berada di Lombok dan Bandung, namun kami melayani perancangan arsitektur di seluruh wilayah Indonesia." },
+    { key: "faq3Question", label: "Pertanyaan 3", type: "text" as const, fallback: "Berapa lama estimasi waktu pengerjaan dokumen desain?" },
+    { key: "faq3Answer", label: "Jawaban 3", type: "textarea" as const, fallback: "Waktu perencanaan bervariasi antara 1 hingga 3 bulan tergantung kompleksitas lahan." },
+    { key: "faq4Question", label: "Pertanyaan 4", type: "text" as const, fallback: "Bagaimana sistem perhitungan biaya jasa arsitek di Ruka Studio?" },
+    { key: "faq4Answer", label: "Jawaban 4", type: "textarea" as const, fallback: "Biaya perencanaan kami dihitung secara transparan berbasis luas lantai bangunan (per meter persegi)." },
+    { key: "faq5Question", label: "Pertanyaan 5", type: "text" as const, fallback: "Apakah dokumen dari Ruka Studio bisa digunakan untuk mengurus IMB/PBG?" },
+    { key: "faq5Answer", label: "Jawaban 5", type: "textarea" as const, fallback: "Ya. Setiap output perencanaan dari kami dilengkapi dokumen teknis berstandar nasional yang lengkap." },
+    { key: "faqImage", label: "📷 Gambar Background/Ilustrasi", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80" },
+  ],
+  [LpSection.PROJECT_BRIEF]: [
+    { key: "projectBriefEyebrow", label: "Label Kecil Atas", type: "text" as const, fallback: "RANCANG BRIEF PROYEK" },
+    { key: "projectBriefTitle", label: "Judul", type: "text" as const, fallback: "Awali rencana Anda." },
+    { key: "projectBriefDesc", label: "Deskripsi", type: "textarea" as const, fallback: "Gambarkan rencana hunian Anda dalam 4 langkah praktis. Tim kami akan meninjau draf brief ini sebelum sesi konsultasi awal." },
+    { key: "projectBriefImage", label: "📷 Gambar Background/Ilustrasi", type: "image" as const, fallback: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1600&q=80" },
+  ],
+  [LpSection.FOOTER]: [
+    { key: "footerTitle", label: "Judul Footer", type: "text" as const, fallback: "Wujudkan visi Anda sekarang." },
+    { key: "footerDesc", label: "Deskripsi", type: "textarea" as const, fallback: "Kami siap mendengarkan. Diskusikan ide awal Anda bersama tim arsitek kami." },
+    { key: "footerButton", label: "Teks Tombol CTA", type: "text" as const, fallback: "Diskusikan Bersama Kami" },
+    { key: "footerImage", label: "📷 Gambar Background", type: "image" as const, fallback: "/cad-footer-bg.png" },
   ]
 };
 
@@ -134,6 +193,9 @@ export default async function ContentPage() {
       <Tabs defaultValue={LpSection.HERO} className="w-full">
         <div className="overflow-x-auto pb-2">
           <TabsList className="bg-white border border-gray-200 h-12 w-max sm:w-full justify-start rounded-none p-1">
+            <TabsTrigger value={LpSection.PROJECT_BRIEF} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <FileText className="w-4 h-4 mr-2" /> Brief
+            </TabsTrigger>
             <TabsTrigger value={LpSection.HERO} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <ImageIcon className="w-4 h-4 mr-2" /> Hero
             </TabsTrigger>
@@ -143,17 +205,32 @@ export default async function ContentPage() {
             <TabsTrigger value={LpSection.OUR_TEAM} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <Users className="w-4 h-4 mr-2" /> Tim Kami
             </TabsTrigger>
+            <TabsTrigger value={LpSection.PHILOSOPHY} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <FileText className="w-4 h-4 mr-2" /> Filosofi
+            </TabsTrigger>
+            <TabsTrigger value={LpSection.ABOUT_HERO} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <FileText className="w-4 h-4 mr-2" /> Tentang
+            </TabsTrigger>
+            <TabsTrigger value={LpSection.PROCESS} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <Briefcase className="w-4 h-4 mr-2" /> Proses
+            </TabsTrigger>
             <TabsTrigger value={LpSection.SERVICE} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <Briefcase className="w-4 h-4 mr-2" /> Layanan
             </TabsTrigger>
             <TabsTrigger value={LpSection.PORTFOLIO} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <FileText className="w-4 h-4 mr-2" /> Portfolio
             </TabsTrigger>
+            <TabsTrigger value={LpSection.FAQ} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <MessageSquare className="w-4 h-4 mr-2" /> FAQ
+            </TabsTrigger>
             <TabsTrigger value={LpSection.TESTIMONIAL} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <MessageSquare className="w-4 h-4 mr-2" /> Testimoni
             </TabsTrigger>
             <TabsTrigger value={LpSection.CONTACT} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
               <Phone className="w-4 h-4 mr-2" /> Kontak
+            </TabsTrigger>
+            <TabsTrigger value={LpSection.FOOTER} className="rounded-none data-[state=active]:bg-[#1B3B5A] data-[state=active]:text-white">
+              <Phone className="w-4 h-4 mr-2" /> Footer
             </TabsTrigger>
           </TabsList>
         </div>

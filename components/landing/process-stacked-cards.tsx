@@ -127,13 +127,29 @@ export const ProcessStackedCards = ({ data }: { data?: Record<string, string> })
     offset: ["start start", "end end"],
   });
 
+  const dynamicStages = processStages.map((stage, i) => {
+    const idx = i + 1;
+    const titleKey = `process${idx}Title`;
+    const descKey = `process${idx}Desc`;
+    const imgKey = `process${idx}Image`;
+    
+    return {
+      id: stage.id,
+      titleID: parseDualLanguage(data?.[titleKey], 'ID', stage.titleID),
+      titleEN: parseDualLanguage(data?.[titleKey], 'EN', stage.titleEN),
+      descID: parseDualLanguage(data?.[descKey], 'ID', stage.descID),
+      descEN: parseDualLanguage(data?.[descKey], 'EN', stage.descEN),
+      src: data?.[imgKey] || stage.src,
+    };
+  });
+
   return (
     <div
       ref={container}
       className="relative flex w-full flex-col items-center justify-center pt-12 pb-[10vh]"
     >
-      {processStages.map((stage, i) => {
-        const targetScale = Math.max(0.9, 1 - (processStages.length - i - 1) * 0.02);
+      {dynamicStages.map((stage, i) => {
+        const targetScale = Math.max(0.9, 1 - (dynamicStages.length - i - 1) * 0.02);
         return (
           <ProcessCard
             key={stage.id}

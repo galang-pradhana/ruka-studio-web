@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 interface OurTeamProps {
   data?: Record<string, string>;
@@ -23,54 +24,50 @@ interface TeamMember {
 export function OurTeamSection({ data }: OurTeamProps) {
   const { language } = useLanguage();
   
-  const title = language === 'EN'
-    ? (data?.titleEN || "MEET THE TEAM")
-    : (data?.titleID || data?.title || "TIM KAMI");
-  const description = language === 'EN'
-    ? (data?.descriptionEN || "Meet the professional minds bringing our architectural visions to life.")
-    : (data?.descriptionID || data?.description || "Kenali tim profesional di balik setiap perencanaan presisi Ruka Studio.");
+  const title = parseDualLanguage(data?.title, language, language === 'ID' ? "TIM KAMI" : "MEET THE TEAM");
+  const description = parseDualLanguage(data?.description, language, language === 'ID' ? "Kenali tim profesional di balik setiap perencanaan presisi Ruka Studio." : "Meet the professional minds bringing our architectural visions to life.");
 
   // Build team member list with premium descriptions and social links
   const allMembers: TeamMember[] = [
     {
-      name: data?.member1Name || "Raka Pratama",
-      role: data?.member1Role || "Principal Architect",
+      name: parseDualLanguage(data?.member1Name, language, "Raka Pratama"),
+      role: parseDualLanguage(data?.member1Role, language, "Principal Architect"),
       image: data?.member1Image || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
-      bioEN: "Pioneering sustainable and context-aware tropical architectural designs with structural integrity.",
-      bioID: "Mempelopori desain arsitektur tropis yang berkelanjutan dan peka konteks dengan kekuatan struktural.",
+      bioEN: parseDualLanguage(data?.member1Bio, 'EN', "Pioneering sustainable and context-aware tropical architectural designs with structural integrity."),
+      bioID: parseDualLanguage(data?.member1Bio, 'ID', "Mempelopori desain arsitektur tropis yang berkelanjutan dan peka konteks dengan kekuatan struktural."),
       instagram: "https://instagram.com",
       linkedin: "https://linkedin.com",
       email: "raka@rukastudio.com",
       visible: data?.member1Visible !== "false",
     },
     {
-      name: data?.member2Name || "Sari Dewi",
-      role: data?.member2Role || "Interior Architect",
+      name: parseDualLanguage(data?.member2Name, language, "Sari Dewi"),
+      role: parseDualLanguage(data?.member2Role, language, "Interior Architect"),
       image: data?.member2Image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-      bioEN: "Focusing on material authenticity, tactile rich textures, and seamless indoor-outdoor transition.",
-      bioID: "Berfokus pada keaslian material, kekayaan tekstur, dan transisi ruang dalam-luar yang mulus.",
+      bioEN: parseDualLanguage(data?.member2Bio, 'EN', "Focusing on material authenticity, tactile rich textures, and seamless indoor-outdoor transition."),
+      bioID: parseDualLanguage(data?.member2Bio, 'ID', "Berfokus pada keaslian material, kekayaan tekstur, dan transisi ruang dalam-luar yang mulus."),
       instagram: "https://instagram.com",
       linkedin: "https://linkedin.com",
       email: "sari@rukastudio.com",
       visible: data?.member2Visible !== "false",
     },
     {
-      name: data?.member3Name || "Budi Wicaksono",
-      role: data?.member3Role || "Project Manager",
+      name: parseDualLanguage(data?.member3Name, language, "Budi Wicaksono"),
+      role: parseDualLanguage(data?.member3Role, language, "Project Manager"),
       image: data?.member3Image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80",
-      bioEN: "Bridging architectural vision with physical execution, timeline optimization, and site safety.",
-      bioID: "Menghubungkan visi arsitektur dengan eksekusi fisik, optimalisasi waktu, dan keamanan lapangan.",
+      bioEN: parseDualLanguage(data?.member3Bio, 'EN', "Bridging architectural vision with physical execution, timeline optimization, and site safety."),
+      bioID: parseDualLanguage(data?.member3Bio, 'ID', "Menghubungkan visi arsitektur dengan eksekusi fisik, optimalisasi waktu, dan keamanan lapangan."),
       instagram: "https://instagram.com",
       linkedin: "https://linkedin.com",
       email: "budi@rukastudio.com",
       visible: data?.member3Visible !== "false",
     },
     {
-      name: data?.member4Name || "Anisa Putri",
-      role: data?.member4Role || "3D Visualizer",
+      name: parseDualLanguage(data?.member4Name, language, "Anisa Putri"),
+      role: parseDualLanguage(data?.member4Role, language, "3D Visualizer"),
       image: data?.member4Image || "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80",
-      bioEN: "Translating schematic models into high-fidelity photorealistic renders for spatial clarity.",
-      bioID: "Menerjemahkan model skematik menjadi rendering fotorealistik resolusi tinggi untuk kejelasan ruang.",
+      bioEN: parseDualLanguage(data?.member4Bio, 'EN', "Translating schematic models into high-fidelity photorealistic renders for spatial clarity."),
+      bioID: parseDualLanguage(data?.member4Bio, 'ID', "Menerjemahkan model skematik menjadi rendering fotorealistik resolusi tinggi untuk kejelasan ruang."),
       instagram: "https://instagram.com",
       linkedin: "https://linkedin.com",
       email: "anisa@rukastudio.com",
