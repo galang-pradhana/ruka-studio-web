@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -36,12 +37,15 @@ export function HeroSection({ data = {} }: { data?: Record<string, string> }) {
         <motion.div 
           className="absolute inset-0 z-0"
         >
-          <motion.img
-            style={{ y: imgY }}
-            src={data.heroImage || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80"}
-            alt="Ruka Studio Project"
-            className="w-full h-[120%] object-cover object-center origin-top -mt-[10%] brightness-[0.85]"
-          />
+          <motion.div style={{ y: imgY }} className="absolute inset-0 w-full h-[120%] origin-top -mt-[10%]">
+            <Image
+              src={data.heroImage || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80"}
+              alt="Ruka Studio Project"
+              fill
+              priority
+              className="object-cover object-center brightness-[0.85]"
+            />
+          </motion.div>
           {/* Top vignette for Nav contrast */}
           <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/70 via-black/20 to-transparent z-10" />
           {/* Bottom vignette for Text contrast */}

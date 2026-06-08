@@ -34,7 +34,6 @@ export const PhilosophySection = ({ data = {} }: { data?: Record<string, string>
       id="philosophy"
       className="relative flex items-center justify-center w-full min-h-[80vh] bg-[#0B2240] text-[#FCFAF6] overflow-hidden px-6 lg:px-20 pt-32 pb-24 md:py-32"
     >
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
       
       <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#A4855C]/30 to-transparent" />
       <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#A4855C]/30 to-transparent" />

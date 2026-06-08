@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import { useLanguage } from "@/contexts/language-context";
+import Image from "next/image";
 
 const processStages = [
   {
@@ -11,7 +12,7 @@ const processStages = [
     titleEN: "Sketch Design",
     descID: "Kami memulai dengan kunjungan lokasi dan konsultasi kreatif untuk menentukan visi, gaya, dan kebutuhan fungsional Anda. Berdasarkan ini, kami membuat serangkaian sketsa desain tangan untuk memberikan konsep visual awal yang mencerminkan brief Anda.",
     descEN: "We start with a site visit and creative consultation to determine your vision, style, and functional needs. Based on this, we create a series of hand-drawn sketches to provide an initial visual concept reflecting your brief.",
-    src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600607687930-cebc5a73e513?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "02",
@@ -19,7 +20,7 @@ const processStages = [
     titleEN: "Design Development",
     descID: "Di sini kami mengembangkan sketsa awal dengan semua detail — termasuk pemilihan material bangunan, denah lantai, layout, desain joinery indikatif, dan alur ruang. Tim kami akan membuat gambar 2D digital terperinci dan model 3D.",
     descEN: "Here we develop the initial sketches with all the details — including building material selection, floor plans, layouts, indicative joinery design, and spatial flow. Our team will create detailed digital 2D drawings and 3D models.",
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "03",
@@ -27,7 +28,7 @@ const processStages = [
     titleEN: "Development Application",
     descID: "Tidak semua proyek memerlukan aplikasi pengembangan ke pemerintah daerah. Jika proyek Anda memerlukannya, kami akan mengkoordinasikan seluruh proses — termasuk pengumpulan dokumentasi, penyiapan dan pengajuan aplikasi.",
     descEN: "Not all projects require a development application to the local council. If yours does, we will coordinate the entire process — including documentation gathering, preparation, and submission of the application.",
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600607687931-18e38e8cb504?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "04",
@@ -35,7 +36,7 @@ const processStages = [
     titleEN: "Interior Design",
     descID: "Kami merancang konsep desain interior yang menciptakan alur, kontras, dan keseimbangan dengan desain arsitektur dan visi keseluruhan rumah Anda — termasuk joinery, kabinet, penyimpanan, finishes, dan perlengkapan.",
     descEN: "We design interior concepts that create flow, contrast, and balance with the architectural design and overall vision of your home — including joinery, cabinetry, storage, finishes, and fixtures.",
-    src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "05",
@@ -43,7 +44,7 @@ const processStages = [
     titleEN: "Building Approval Plans",
     descID: "Semua proyek arsitektur memerlukan Persetujuan Bangunan sebelum konstruksi dapat dimulai. Tim kami akan menasihati, memandu, mengkoordinasikan, dan mengelola semua rencana serta aplikasi persetujuan bangunan Anda.",
     descEN: "All architectural projects require Building Approval before construction can commence. Our team will advise, guide, coordinate, and manage all your building approval plans and applications.",
-    src: "https://images.unsplash.com/photo-1503708928676-1cb796a0891e?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "06",
@@ -51,7 +52,7 @@ const processStages = [
     titleEN: "Construction Plans",
     descID: "Dengan semua detail desain selesai dan persetujuan bangunan beres, kami beralih ke pembuatan rencana, gambar, dan dokumen konstruksi yang akan memandu builder dan tenaga ahli dalam mewujudkan desain yang dimaksudkan.",
     descEN: "With all design details finalized and building approvals in place, we move to creating construction plans, drawings, and documents that will guide the builder and trades in realizing the intended design.",
-    src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1600585154526-990dced4ea0d?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -104,10 +105,12 @@ const ProcessCard = ({
 
         {/* Image Side */}
         <div className="w-full lg:w-[55%] h-[300px] lg:h-[550px] relative overflow-hidden bg-[#0B2240]/5">
-          <img
+          <Image
             src={stage.src}
             alt={language === "ID" ? stage.titleID : stage.titleEN}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 55vw"
           />
         </div>
       </motion.div>

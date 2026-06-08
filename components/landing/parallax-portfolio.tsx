@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
 import { Compass } from "lucide-react";
+import Image from "next/image";
 
 const content = {
   EN: {
@@ -20,18 +21,18 @@ const content = {
 };
 
 const defaultImages = [
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600607687930-cebc5a73e513?q=80&w=600&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541888086225-ee5b565a9568?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503708928676-1cb796a0891e?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1504307651254-35680f356fce?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1524815410118-cb15e982187b?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600607687931-18e38e8cb504?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600585154526-990dced4ea0d?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600573472591-ee6981cf35b6?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600585154166-d8897c8f7419?q=80&w=600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600566752229-250de48545e8?q=80&w=600&auto=format&fit=crop",
 ];
 
 export type PortfolioItem = {
@@ -143,12 +144,12 @@ const Column = ({ images, y, className = "" }: ColumnProps) => {
     >
       {images.map((src, i) => (
         <div key={i} className="relative h-full w-full overflow-hidden rounded-none bg-[#EFECE6] group cursor-pointer">
-          <img
+          <Image
             src={`${src}`}
             alt="Portfolio View"
-            loading="lazy"
+            fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="pointer-events-none object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+            className="pointer-events-none object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       ))}

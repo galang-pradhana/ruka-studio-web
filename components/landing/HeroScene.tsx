@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { BACKGROUNDS } from './types';
 import { clamp } from './utils';
 import { SupportedLanguages, TRANSLATIONS } from './translations';
+import Image from "next/image";
 
 interface HeroSceneProps {
   scrollProgress: number;
@@ -275,12 +276,12 @@ export default function HeroScene({ scrollProgress, heroScrollProgress, lang, ac
         onMouseEnter={() => setHoveredCard(index)}
         onMouseLeave={() => setHoveredCard(null)}
       >
-        {/* Card Image */}
-        <img
+        <Image
           src={bg.url}
           alt={name}
-          referrerPolicy="no-referrer"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 ${
+          fill
+          sizes="150px"
+          className={`object-cover transition-all duration-700 ease-out group-hover:scale-110 ${
             isSelected ? 'opacity-90 saturate-100' : 'opacity-55 group-hover:opacity-75 saturate-50'
           }`}
         />

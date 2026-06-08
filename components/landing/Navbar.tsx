@@ -199,14 +199,14 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
               </AnimatePresence>
 
               {/* STATE A/B: CTA button + Trigger toggles based on light-bg scroll threshold */}
-              <div className="flex items-center gap-4 justify-end flex-1">
+              <div className="flex items-center gap-4 justify-end flex-1 shrink-0">
                 {isLightBg ? (
                   // STATE B: Only show GET IN TOUCH - MENU - LANG TOGGLE
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-4 shrink-0 whitespace-nowrap"
                   >
                     <a
                       href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio"
@@ -234,7 +234,7 @@ export default function Navbar({ isMobile, isVisible, lang, onLanguageChange, is
                   </motion.div>
                 ) : (
                   // STATE A: Only show GET IN TOUCH button + LANG TOGGLE
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 shrink-0 whitespace-nowrap">
                     <a
                       href="https://wa.me/6281234567890?text=Halo%20Ruka%20Studio"
                       id="nav-get-in-touch"

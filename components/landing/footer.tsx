@@ -2,6 +2,8 @@
 import React from 'react';
 import { useLanguage } from "@/contexts/language-context";
 
+import Image from "next/image";
+
 export function LandingFooter({ data = {} }: { data?: Record<string, string> }) {
   const currentYear = new Date().getFullYear();
   const { language } = useLanguage();
@@ -32,7 +34,9 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
     >
       {/* Rich, high-precision technical vector architectural blueprint backdrop */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden opacity-[0.32] md:opacity-[0.38]" aria-hidden="true">
-        <img src="/cad-footer-bg.png" alt="CAD Background" className="absolute bottom-0 right-[-5%] md:right-0 w-[120%] md:w-[75%] h-[80%] md:h-[95%] object-cover md:object-contain object-left-bottom md:object-right-bottom opacity-[0.5] mix-blend-multiply" />
+        <div className="absolute bottom-0 right-[-5%] md:right-0 w-[120%] md:w-[75%] h-[80%] md:h-[95%]">
+          <Image src="/cad-footer-bg.png" alt="CAD Background" fill className="object-cover md:object-contain object-left-bottom md:object-right-bottom opacity-[0.5] mix-blend-multiply" />
+        </div>
       </div>
 
       {/* Outer Layout wrapper to align structure perfectly and matching other sections */}

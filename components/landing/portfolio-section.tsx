@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export type PortfolioItem = {
   id: string;
@@ -10,27 +11,26 @@ export type PortfolioItem = {
   description: string | null;
 };
 
-// Fallback static data — arsitektur & konstruksi
 const FALLBACK_ITEMS: PortfolioItem[] = [
   {
     id: "1",
     title: "Vila Modern Bali",
     projectType: "Full Kontraktor",
-    imageUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1600607687930-cebc5a73e513?w=800&q=80",
     description: "Hunian tropis modern dengan ruang terbuka lebar yang menyatu dengan lanskap alami.",
   },
   {
     id: "2",
     title: "Residensial Serpong",
     projectType: "Pengawasan",
-    imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     description: "Kesederhanaan volume geometris yang berpadu dengan cahaya natural.",
   },
   {
     id: "3",
     title: "Ruang Komersial Jakarta",
     projectType: "Perencanaan",
-    imageUrl: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1600607687931-18e38e8cb504?w=800&q=80",
     description: "Pemilihan material taktil yang memberikan kedalaman karakter pada ruang publik.",
   },
 ];
@@ -100,10 +100,12 @@ export function PortfolioSection({ items, data = {} }: Props) {
                     transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                     className="w-full aspect-video cursor-pointer relative"
                   >
-                    <img
+                    <Image
                       src={item.imageUrl}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 66vw"
                     />
                     {/* Hover Overlay — dark editorial glass */}
                     <div

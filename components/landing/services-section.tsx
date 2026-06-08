@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/language-context";
+import Image from "next/image";
 
 interface ServiceType {
   id: string;
@@ -124,16 +125,22 @@ export function ServicesSection({ data = {} }: { data?: Record<string, string> }
           <div className="sticky top-0 h-screen flex items-center justify-center">
             <div className="w-full h-full relative overflow-hidden rounded-none">
               <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.div
                   key={activeIdx}
-                  src={services[activeIdx]?.imgUrl} 
-                  alt={services[activeIdx]?.title}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <Image 
+                    src={services[activeIdx]?.imgUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"} 
+                    alt={services[activeIdx]?.title || "Service Image"}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
