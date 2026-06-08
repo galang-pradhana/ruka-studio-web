@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from "@/contexts/language-context";
 import { Plus, Minus } from "lucide-react";
-import { parseDualLanguage } from "@/lib/utils";
+import { parseDualLanguage } from "@/lib/content-parser";
 import Image from "next/image";
 
 interface FAQItem {

@@ -88,21 +88,25 @@ const SECTION_FIELDS = {
     // Anggota 1
     { key: "member1Name", label: "Nama Anggota 1", type: "text" as const, fallback: "Raka Pratama" },
     { key: "member1Role", label: "Jabatan Anggota 1", type: "text" as const, fallback: "Principal Architect" },
+    { key: "member1Bio", label: "Bio Anggota 1", type: "textarea" as const, fallback: "ID: Memiliki pengalaman lebih dari 10 tahun dalam merancang hunian premium. | EN: Has over 10 years of experience in designing premium residences." },
     { key: "member1Image", label: "📷 Foto Anggota 1", type: "image" as const, fallback: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
     { key: "member1Visible", label: "Tampilkan Anggota 1 di Website", type: "toggle" as const, fallback: "true" },
     // Anggota 2
     { key: "member2Name", label: "Nama Anggota 2", type: "text" as const, fallback: "Sari Dewi" },
     { key: "member2Role", label: "Jabatan Anggota 2", type: "text" as const, fallback: "Interior Designer" },
+    { key: "member2Bio", label: "Bio Anggota 2", type: "textarea" as const, fallback: "ID: Spesialis dalam menciptakan harmoni antara ruang dalam dan luar. | EN: Specialist in creating harmony between indoor and outdoor spaces." },
     { key: "member2Image", label: "📷 Foto Anggota 2", type: "image" as const, fallback: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" },
     { key: "member2Visible", label: "Tampilkan Anggota 2 di Website", type: "toggle" as const, fallback: "true" },
     // Anggota 3
     { key: "member3Name", label: "Nama Anggota 3", type: "text" as const, fallback: "Budi Wicaksono" },
     { key: "member3Role", label: "Jabatan Anggota 3", type: "text" as const, fallback: "Project Manager" },
+    { key: "member3Bio", label: "Bio Anggota 3", type: "textarea" as const, fallback: "ID: Memastikan setiap proyek selesai tepat waktu dengan kualitas terbaik. | EN: Ensuring every project is completed on time with the best quality." },
     { key: "member3Image", label: "📷 Foto Anggota 3", type: "image" as const, fallback: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
     { key: "member3Visible", label: "Tampilkan Anggota 3 di Website", type: "toggle" as const, fallback: "true" },
     // Anggota 4
     { key: "member4Name", label: "Nama Anggota 4", type: "text" as const, fallback: "Anisa Putri" },
     { key: "member4Role", label: "Jabatan Anggota 4", type: "text" as const, fallback: "3D Visualizer" },
+    { key: "member4Bio", label: "Bio Anggota 4", type: "textarea" as const, fallback: "ID: Menghidupkan desain melalui rendering fotorealistik yang memukau. | EN: Bringing designs to life through stunning photorealistic renderings." },
     { key: "member4Image", label: "📷 Foto Anggota 4", type: "image" as const, fallback: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
     { key: "member4Visible", label: "Tampilkan Anggota 4 di Website", type: "toggle" as const, fallback: "false" },
   ],

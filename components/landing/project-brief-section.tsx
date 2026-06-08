@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from "@/contexts/language-context";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { parseDualLanguage } from "@/lib/utils";
+import { parseDualLanguage } from "@/lib/content-parser";
 import Image from "next/image";
 
 export function ProjectBriefSection({ data = {} }: { data?: Record<string, string> }) {

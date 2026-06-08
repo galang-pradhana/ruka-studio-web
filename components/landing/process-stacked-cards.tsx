@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import { useLanguage } from "@/contexts/language-context";
+import { parseDualLanguage } from "@/lib/content-parser";
 import Image from "next/image";
 
 const processStages = [

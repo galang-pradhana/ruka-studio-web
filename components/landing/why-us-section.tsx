@@ -19,16 +19,16 @@ export function WhyUsSection({ data }: WhyUsProps) {
 
   const stats = [
     { 
-      value: parseDualLanguage(data?.stat1Value, language, "250+"), 
-      label: parseDualLanguage(data?.stat1Label, language, language === 'ID' ? "Proyek Selesai" : "Completed Projects") 
+      value: parseDualLanguage(data?.stats1Value, language, "250+"), 
+      label: parseDualLanguage(data?.stats1Label, language, language === 'ID' ? "Proyek Selesai" : "Completed Projects") 
     },
     { 
-      value: parseDualLanguage(data?.stat2Value, language, "15+"), 
-      label: parseDualLanguage(data?.stat2Label, language, language === 'ID' ? "Tahun Pengalaman" : "Years Experience") 
+      value: parseDualLanguage(data?.stats2Value, language, "15+"), 
+      label: parseDualLanguage(data?.stats2Label, language, language === 'ID' ? "Tahun Pengalaman" : "Years Experience") 
     },
     { 
-      value: parseDualLanguage(data?.stat3Value, language, "98%"), 
-      label: parseDualLanguage(data?.stat3Label, language, language === 'ID' ? "Klien Puas" : "Happy Clients") 
+      value: parseDualLanguage(data?.stats3Value, language, "98%"), 
+      label: parseDualLanguage(data?.stats3Label, language, language === 'ID' ? "Klien Puas" : "Happy Clients") 
     },
   ];
 

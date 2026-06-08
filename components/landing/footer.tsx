@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { useLanguage } from "@/contexts/language-context";
-import { parseDualLanguage } from "@/lib/utils";
+import { parseDualLanguage } from "@/lib/content-parser";
 
 import Image from "next/image";
 
@@ -121,9 +121,18 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
         </div>
 
         {/* LOWER ALIGNED STRIP: Aligned perfectly with other pages */}
-        <div className="border-t border-[#0B2240]/10 pt-10 mt-6 w-full flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Social linkages in high-end design */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-7 font-mono text-[9px] text-[#0B2240]/55 tracking-[0.2em] uppercase">
+        <div className="border-t border-[#0B2240]/10 pt-10 mt-6 w-full grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-end">
+          
+          {/* Left: Contact Info */}
+          <div className="flex flex-col items-center md:items-start gap-2 font-mono text-[9px] text-[#0B2240]/60 tracking-[0.15em] uppercase text-center md:text-left order-2 md:order-1">
+            <a href={`mailto:${data.email || "hello@rukastudio.com"}`} className="text-[#A4855C] font-semibold hover:text-[#0B2240] transition-colors duration-300">
+              {data.email || "hello@rukastudio.com"}
+            </a>
+            <span className="max-w-[200px] leading-relaxed">{data.address || "Lombok, Indonesia"}</span>
+          </div>
+
+          {/* Center: Social linkages in high-end design */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-7 font-mono text-[9px] text-[#0B2240]/55 tracking-[0.2em] uppercase order-1 md:order-2">
             <a href={data.instagram || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
               INSTAGRAM
             </a>
@@ -141,8 +150,8 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
             </a>
           </div>
 
-          {/* Copyright stamp */}
-          <div className="font-mono text-[9px] text-[#0B2240]/40 tracking-wider text-center md:text-right select-none md:max-w-xs leading-relaxed flex flex-col items-center md:items-end gap-1.5">
+          {/* Right: Copyright stamp */}
+          <div className="font-mono text-[9px] text-[#0B2240]/40 tracking-wider text-center md:text-right select-none leading-relaxed flex flex-col items-center md:items-end gap-1.5 order-3">
             <span>© {currentYear} RUKA STUDIO. ALL RIGHTS RESERVED.</span>
             <span className="text-[#A4855C]/75 font-semibold">DIGITAL ARCHITECTURAL CAD PLAN S-04 // ID72a9</span>
             <a href="/login" className="text-[#0B2240]/30 hover:text-[#A4855C] transition-colors mt-2">ADMIN AREA</a>
