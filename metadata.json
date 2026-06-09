@@ -1,0 +1,8 @@
+{
+  "name": "Ruka Studio",
+  "description": "Bespoke high-end architectural consultant website with CMS dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
