@@ -99,9 +99,9 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
           </div>
 
           {/* RIGHT AREA: Vertical clean menu navigation hierarchy beautifully aligned with Ruka styles */}
-          <div className="lg:col-span-5 flex flex-col lg:items-end w-full lg:text-right gap-4">
+          <div className="lg:col-span-5 flex flex-col lg:items-end w-full lg:text-right gap-4 lg:self-end">
             <div className="text-[#A4855C] font-mono text-[9px] tracking-[0.25em] uppercase border-b border-[#0B2240]/10 pb-2.5 w-full lg:max-w-[180px] mb-2 font-semibold">
-              INDEX / 索引
+              INDEX
             </div>
             <ul className="flex flex-col gap-3.5 uppercase font-mono text-[10.5px] font-bold tracking-[0.22em] text-[#0B2240]/75">
               {footerLinks.map((item) => (
