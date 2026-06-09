@@ -14,12 +14,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("ID");
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // Baca localStorage hanya setelah client mount
+    // Ini mencegah hydration mismatch karena server selalu render "ID"
     const saved = localStorage.getItem("ruka-lang") as Language;
     if (saved === "EN" || saved === "ID") {
       setLanguage(saved);
     }
+    setIsMounted(true);
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
@@ -35,8 +39,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  // Selama belum mount, expose language "ID" agar match dengan server render
+  const contextValue = {
+    language: isMounted ? language : "ID",
+    toggleLanguage,
+    setLanguage: handleSetLanguage,
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, setLanguage: handleSetLanguage }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );

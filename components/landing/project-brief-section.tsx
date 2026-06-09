@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import { useLanguage } from "@/contexts/language-context";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
 import { parseDualLanguage } from "@/lib/content-parser";
 import Image from "next/image";
+import { createProjectBrief } from "@/app/actions/brief.actions";
+import { toast } from "sonner";
 
 export function ProjectBriefSection({ data = {} }: { data?: Record<string, string> }) {
   const { language } = useLanguage();
@@ -15,11 +17,12 @@ export function ProjectBriefSection({ data = {} }: { data?: Record<string, strin
   const [location, setLocation] = useState('Lombok');
   const [propType, setPropType] = useState(language === 'EN' ? 'Residential' : 'Hunian');
   const [landSize, setLandSize] = useState('< 150m²');
-  const [budget, setBudget] = useState('< Rp 1M');
+  const [budget, setBudget] = useState(language === 'EN' ? '< Rp 100 Million' : '< Rp 100jt');
   const [details, setDetails] = useState('');
   
   // Validation
   const [errorMsg, setErrorMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const locationOptions = {
     EN: ['Lombok', 'Bandung', 'Bali', 'Other'],
@@ -34,8 +37,8 @@ export function ProjectBriefSection({ data = {} }: { data?: Record<string, strin
   const landSizeOptions = ['< 150m²', '150m² - 300m²', '300m² - 500m²', '> 500m²'];
   
   const budgetOptions = {
-    EN: ['< Rp 1B', 'Rp 1B - 2.5B', 'Rp 2.5B - 5B', '> Rp 5B'],
-    ID: ['< Rp 1 Miliar', 'Rp 1M - 2.5 Miliar', 'Rp 2.5M - 5 Miliar', '> Rp 5 Miliar']
+    EN: ['< Rp 100 Million', 'Rp 100 - 250 Million', 'Rp 250 - 500 Million', '> Rp 500 Million'],
+    ID: ['< Rp 100jt', 'Rp 100 - 250jt', 'Rp 250 - 500jt', '> Rp 500jt']
   };
 
   const steps = [
@@ -68,26 +71,59 @@ export function ProjectBriefSection({ data = {} }: { data?: Record<string, strin
     setCurrentStep(prev => Math.max(prev - 1, 1));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     setErrorMsg('');
+    setIsSubmitting(true);
 
     // Pre-submission final checks
     if (!name.trim() || !email.trim()) {
       setCurrentStep(1);
       setErrorMsg(language === 'EN' ? 'Name and Contact are required.' : 'Nama dan Kontak wajib diisi.');
+      setIsSubmitting(false);
       return;
     }
 
-    const whatsappNumber = "6281234567890"; // Ruka Studio Contact WA
-    const messageTemplate = language === 'EN' 
-      ? `Hello Ruka Studio,\n\nI am interested in starting a project planning brief with your team.\n\n*Project Details:*\n- Name: ${name}\n- Contact: ${email}\n- Project Location: ${location}\n- Property Type: ${propType}\n- Land Area: ${landSize}\n- Estimated Construction Budget: ${budget}\n\n*Additional Space Brief:*\n${details || "-"}\n\nThank you.`
-      : `Halo Ruka Studio,\n\nSaya tertarik untuk mendiskusikan rencana konsultasi & perancangan arsitektur bersama tim Ruka.\n\n*Rincian Brief Proyek:*\n- Nama: ${name}\n- Kontak/Email: ${email}\n- Lokasi Proyek: ${location}\n- Tipe Properti: ${propType}\n- Luas Lahan: ${landSize}\n- Estimasi Budget Konstruksi: ${budget}\n\n*Deskripsi Kebutuhan Ruang:*\n${details || "-"}\n\nTerima kasih.`;
+    try {
+      const res = await createProjectBrief({
+        name,
+        email,
+        location,
+        propType,
+        landSize,
+        budget,
+        details,
+      });
 
-    const encodedMsg = encodeURIComponent(messageTemplate);
-    const waUrl = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
-    
-    window.open(waUrl, '_blank');
+      if (!res.success) {
+        setErrorMsg(res.error || (language === 'EN' ? 'Something went wrong.' : 'Terjadi kesalahan.'));
+        toast.error(res.error || (language === 'EN' ? 'Something went wrong.' : 'Gagal menyimpan data brief.'));
+        setIsSubmitting(false);
+        return;
+      }
+
+      toast.success(
+        language === 'EN' 
+          ? "Brief saved successfully! Connecting to WhatsApp..." 
+          : "Brief berhasil disimpan! Menghubungkan ke WhatsApp..."
+      );
+
+      const whatsappNumber = "6281234567890"; // Ruka Studio Contact WA
+      const messageTemplate = language === 'EN' 
+        ? `Hello Ruka Studio,\n\nI am interested in starting a project planning brief with your team.\n\n*Project Details:*\n- Name: ${name}\n- Contact: ${email}\n- Project Location: ${location}\n- Property Type: ${propType}\n- Land Area: ${landSize}\n- Estimated Construction Budget: ${budget}\n\n*Additional Space Brief:*\n${details || "-"}\n\nThank you.`
+        : `Halo Ruka Studio,\n\nSaya tertarik untuk mendiskusikan rencana konsultasi & perancangan arsitektur bersama tim Ruka.\n\n*Rincian Brief Proyek:*\n- Nama: ${name}\n- Kontak/Email: ${email}\n- Lokasi Proyek: ${location}\n- Tipe Properti: ${propType}\n- Luas Lahan: ${landSize}\n- Estimasi Budget Konstruksi: ${budget}\n\n*Deskripsi Kebutuhan Ruang:*\n${details || "-"}\n\nTerima kasih.`;
+
+      const encodedMsg = encodeURIComponent(messageTemplate);
+      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
+      
+      window.open(waUrl, '_blank');
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(language === 'EN' ? 'Failed to submit.' : 'Gagal mengirimkan brief.');
+      toast.error(language === 'EN' ? 'Failed to submit.' : 'Gagal mengirimkan brief.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const projectBriefImage = data.projectBriefImage || "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1600&q=80";
@@ -382,11 +418,21 @@ export function ProjectBriefSection({ data = {} }: { data?: Record<string, strin
                   ) : (
                     <button
                       type="button"
-                      onClick={handleSubmit}
-                      className="inline-flex items-center gap-2 bg-black hover:bg-[#A4855C] text-white px-5 py-2.5 rounded-none text-xs font-sans font-bold transition-all duration-300 cursor-pointer shadow-md hover:scale-[1.02] border border-[#0B2240]/10"
+                      onClick={() => handleSubmit()}
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-2 bg-black hover:bg-[#A4855C] text-white px-5 py-2.5 rounded-none text-xs font-sans font-bold transition-all duration-300 cursor-pointer shadow-md hover:scale-[1.02] border border-[#0B2240]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {language === 'EN' ? "Transmit Brief" : "Kirim Brief"}
-                      <Check className="w-3.5 h-3.5" />
+                      {isSubmitting ? (
+                        <>
+                          {language === 'EN' ? "Sending..." : "Mengirim..."}
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          {language === 'EN' ? "Transmit Brief" : "Kirim Brief"}
+                          <Check className="w-3.5 h-3.5" />
+                        </>
+                      )}
                     </button>
                   )}
                 </div>

@@ -9,6 +9,12 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
   const currentYear = new Date().getFullYear();
   const { language } = useLanguage();
 
+  const emailVal = parseDualLanguage(data.email, language, "hello@rukastudio.com");
+  const instagramVal = parseDualLanguage(data.instagram, language, "https://instagram.com/rukastudio");
+  const linkedinVal = parseDualLanguage(data.linkedin, language, "https://linkedin.com/company/rukastudio");
+  const whatsappNumberVal = parseDualLanguage(data.whatsappNumber, language, "6281234567890");
+  const whatsappMessageVal = parseDualLanguage(data.whatsappMessage, language, "Halo Ruka Studio, saya ingin diskusi proyek.");
+
   const footerLinksMap = {
     EN: [
       { name: "Home", href: "#hero-section" },
@@ -74,7 +80,7 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
 
             {/* Highly finished button: follows RUKA's standard dark pill style with accent colors */}
             <a
-              href={`https://wa.me/${data.whatsappNumber || "6281234567890"}?text=${encodeURIComponent(data.whatsappMessage || "Halo Ruka Studio, saya ingin diskusi proyek.")}`}
+              href={`https://wa.me/${whatsappNumberVal}?text=${encodeURIComponent(whatsappMessageVal)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-black hover:bg-[#A4855C] text-white px-7 py-3 rounded-none transition-all duration-300 transform hover:scale-[1.02] shadow-[0_8px_20px_rgba(11,34,64,0.12)] border border-[#0B2240]/10"
@@ -121,37 +127,39 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
         </div>
 
         {/* LOWER ALIGNED STRIP: Aligned perfectly with other pages */}
-        <div className="border-t border-[#0B2240]/10 pt-10 mt-6 w-full grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-end">
+        <div className="border-t border-[#0B2240]/10 pt-10 mt-6 w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-end">
           
-          {/* Left: Contact Info */}
-          <div className="flex flex-col items-center md:items-start gap-2 font-mono text-[9px] text-[#0B2240]/60 tracking-[0.15em] uppercase text-center md:text-left order-2 md:order-1">
-            <a href={`mailto:${data.email || "hello@rukastudio.com"}`} className="text-[#A4855C] font-semibold hover:text-[#0B2240] transition-colors duration-300">
-              {data.email || "hello@rukastudio.com"}
-            </a>
-            <span className="max-w-[200px] leading-relaxed">{data.address || "Lombok, Indonesia"}</span>
-          </div>
-
-          {/* Center: Social linkages in high-end design */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-7 font-mono text-[9px] text-[#0B2240]/55 tracking-[0.2em] uppercase order-1 md:order-2">
-            <a href={data.instagram || "https://instagram.com"} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
+          {/* Left: Social & Email info */}
+          <div className="flex flex-col items-center md:items-start gap-3 font-mono text-[9px] text-[#0B2240]/60 tracking-[0.18em] uppercase text-center md:text-left">
+            <a 
+              href={instagramVal} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-[#A4855C] transition-colors duration-300 font-bold"
+            >
               INSTAGRAM
             </a>
-            <span className="text-[#0B2240]/15 select-none">/</span>
-            <a href={data.linkedin || "https://linkedin.com"} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
+            <a 
+              href={linkedinVal} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-[#A4855C] transition-colors duration-300 font-bold"
+            >
               LINKEDIN
             </a>
-            <span className="text-[#0B2240]/15 select-none">/</span>
-            <a href="https://archdaily.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
-              ARCHDAILY
-            </a>
-            <span className="text-[#0B2240]/15 select-none">/</span>
-            <a href={`https://wa.me/${data.whatsappNumber || "6281234567890"}?text=${encodeURIComponent(data.whatsappMessage || "Halo Ruka Studio")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#A4855C] transition-colors duration-300">
-              PATRONS OFFICE
-            </a>
+            <div className="mt-1 flex flex-col md:flex-row items-center gap-1 font-mono text-[9px] text-[#0B2240]/60 uppercase">
+              <span>EMAIL :</span>
+              <a 
+                href={`mailto:${emailVal}`} 
+                className="text-[#A4855C] font-bold hover:text-[#0B2240] transition-colors duration-300 normal-case tracking-[0.1em]"
+              >
+                {emailVal}
+              </a>
+            </div>
           </div>
 
           {/* Right: Copyright stamp */}
-          <div className="font-mono text-[9px] text-[#0B2240]/40 tracking-wider text-center md:text-right select-none leading-relaxed flex flex-col items-center md:items-end gap-1.5 order-3">
+          <div className="font-mono text-[9px] text-[#0B2240]/40 tracking-wider text-center md:text-right select-none leading-relaxed flex flex-col items-center md:items-end gap-1.5">
             <span>© {currentYear} RUKA STUDIO. ALL RIGHTS RESERVED.</span>
             <span className="text-[#A4855C]/75 font-semibold">DIGITAL ARCHITECTURAL CAD PLAN S-04 // ID72a9</span>
             <a href="/login" className="text-[#0B2240]/30 hover:text-[#A4855C] transition-colors mt-2">ADMIN AREA</a>

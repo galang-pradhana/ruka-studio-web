@@ -73,23 +73,27 @@ const ProcessCard = ({
   language: "ID" | "EN";
 }) => {
   const container = useRef<HTMLDivElement>(null);
-  const scale = useTransform(progress, range, [1, targetScale]);
+  
+  // Avoid NaN/invalid range [1, 1] for the last card by keeping its scale constant at 1
+  const isLastCard = range[0] >= 1;
+  const scale = isLastCard 
+    ? 1 
+    : useTransform(progress, range, [1, targetScale]);
 
   return (
     <div
       ref={container}
-      className="sticky top-0 flex items-center justify-center min-h-screen pb-[10vh]"
+      className="sticky top-0 flex items-center justify-center min-h-screen w-full"
     >
       <motion.div
         style={{
           scale,
-          top: `calc(10vh + ${i * 25}px)`,
           zIndex: i * 10,
         }}
-        className="relative flex flex-col lg:flex-row w-full bg-[#FCFAF6] border-y border-[#0B2240]/10 shadow-[0_20px_40px_rgba(10,6,8,0.06)] origin-top overflow-hidden rounded-none"
+        className="relative flex flex-col lg:flex-row w-full h-[580px] lg:h-[520px] bg-[#FCFAF6] border-y border-[#0B2240]/10 shadow-[0_20px_40px_rgba(10,6,8,0.06)] overflow-hidden rounded-none"
       >
         {/* Content Side */}
-        <div className="w-full lg:w-[45%] p-8 md:p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#0B2240]/10 bg-[#FCFAF6]">
+        <div className="w-full lg:w-[45%] h-[300px] lg:h-full p-8 md:p-12 lg:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#0B2240]/10 bg-[#FCFAF6] overflow-y-auto">
           <span className="font-mono text-[10px] md:text-[12px] text-[#0B2240]/40 mb-6 block">
             ({stage.id})
           </span>
@@ -105,13 +109,14 @@ const ProcessCard = ({
         </div>
 
         {/* Image Side */}
-        <div className="w-full lg:w-[55%] h-[300px] lg:h-[550px] relative overflow-hidden bg-[#0B2240]/5">
+        <div className="w-full lg:w-[55%] h-[280px] lg:h-full relative overflow-hidden bg-[#0B2240]/5">
           <Image
             src={stage.src}
             alt={language === "ID" ? stage.titleID : stage.titleEN}
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 55vw"
+            priority={i < 2}
           />
         </div>
       </motion.div>
@@ -157,7 +162,7 @@ export const ProcessStackedCards = ({ data }: { data?: Record<string, string> })
             i={i}
             stage={stage}
             progress={scrollYProgress}
-            range={[i * 0.15, 1]}
+            range={[i * (1 / (dynamicStages.length - 1)), 1]}
             targetScale={targetScale}
             language={language}
           />

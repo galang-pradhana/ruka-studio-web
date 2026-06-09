@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLanguage } from "@/contexts/language-context";
 import { Plus, Minus } from "lucide-react";
 import { parseDualLanguage } from "@/lib/content-parser";
-import Image from "next/image";
 
 interface FAQItem {
   question: string;
@@ -65,7 +64,6 @@ export function FAQSection({ data = {} }: { data?: Record<string, string> }) {
   };
 
   const items = faqData[language];
-  const faqImage = data.faqImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80";
 
   return (
     <section
@@ -73,18 +71,6 @@ export function FAQSection({ data = {} }: { data?: Record<string, string> }) {
       className="py-[120px] relative overflow-hidden"
       style={{ backgroundColor: "#FCFAF6", borderTop: "1px solid rgba(10,6,8,0.06)" }}
     >
-      {/* Fallback Background Image */}
-      {faqImage && (
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
-          <Image
-            src={faqImage}
-            alt="FAQ Background"
-            fill
-            className="object-cover"
-          />
-        </div>
-      )}
-
       <div className="max-w-[1000px] mx-auto px-6 md:px-14 relative z-10">
         {/* Section Header */}
         <div className="mb-16 text-center md:text-left">

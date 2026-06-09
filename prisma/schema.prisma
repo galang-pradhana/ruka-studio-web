@@ -165,14 +165,31 @@ model LpContent {
 }
 
 model LpPortfolioItem {
-  id          String   @id @default(uuid())
-  title       String   @db.VarChar(200)
-  description String?  @db.Text
-  imageUrl    String   @map("image_url") @db.Text
-  projectType String?  @map("project_type") @db.VarChar(100)
-  orderIndex  Int?     @map("order_index")
-  isActive    Boolean  @default(true) @map("is_active")
-  createdAt   DateTime @default(now()) @map("created_at")
+  id               String   @id @default(uuid())
+  title            String   @db.VarChar(500)
+  description      String?  @db.Text
+  imageUrl         String   @map("image_url") @db.Text
+  projectType      String?  @map("project_type") @db.VarChar(300)
+  detailImagesJson String?  @map("detail_images_json") @db.Text
+  orderIndex       Int?     @map("order_index")
+  isActive         Boolean  @default(true) @map("is_active")
+  createdAt        DateTime @default(now()) @map("created_at")
 
   @@map("lp_portfolio_items")
 }
+
+model ProjectBrief {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(200)
+  email     String   @db.VarChar(255)
+  location  String   @db.VarChar(200)
+  propType  String   @map("prop_type") @db.VarChar(200)
+  landSize  String   @map("land_size") @db.VarChar(100)
+  budget    String   @db.VarChar(100)
+  details   String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("project_briefs")
+}
+

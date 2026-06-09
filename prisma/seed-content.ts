@@ -57,18 +57,30 @@ const DEFAULT_CONTENT = [
   { section: "OUR_TEAM", key: "member1Name", value: "Raka Pratama" },
   { section: "OUR_TEAM", key: "member1Role", value: "Principal Architect" },
   { section: "OUR_TEAM", key: "member1Image", value: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
+  { section: "OUR_TEAM", key: "member1Instagram", value: "https://instagram.com" },
+  { section: "OUR_TEAM", key: "member1Linkedin", value: "https://linkedin.com" },
+  { section: "OUR_TEAM", key: "member1Email", value: "raka@rukastudio.com" },
   { section: "OUR_TEAM", key: "member1Visible", value: "true" },
   { section: "OUR_TEAM", key: "member2Name", value: "Sari Dewi" },
   { section: "OUR_TEAM", key: "member2Role", value: "Interior Designer" },
   { section: "OUR_TEAM", key: "member2Image", value: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" },
+  { section: "OUR_TEAM", key: "member2Instagram", value: "https://instagram.com" },
+  { section: "OUR_TEAM", key: "member2Linkedin", value: "https://linkedin.com" },
+  { section: "OUR_TEAM", key: "member2Email", value: "sari@rukastudio.com" },
   { section: "OUR_TEAM", key: "member2Visible", value: "true" },
   { section: "OUR_TEAM", key: "member3Name", value: "Budi Wicaksono" },
   { section: "OUR_TEAM", key: "member3Role", value: "Project Manager" },
   { section: "OUR_TEAM", key: "member3Image", value: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
+  { section: "OUR_TEAM", key: "member3Instagram", value: "https://instagram.com" },
+  { section: "OUR_TEAM", key: "member3Linkedin", value: "https://linkedin.com" },
+  { section: "OUR_TEAM", key: "member3Email", value: "budi@rukastudio.com" },
   { section: "OUR_TEAM", key: "member3Visible", value: "true" },
   { section: "OUR_TEAM", key: "member4Name", value: "Anisa Putri" },
   { section: "OUR_TEAM", key: "member4Role", value: "3D Visualizer" },
   { section: "OUR_TEAM", key: "member4Image", value: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
+  { section: "OUR_TEAM", key: "member4Instagram", value: "https://instagram.com" },
+  { section: "OUR_TEAM", key: "member4Linkedin", value: "https://linkedin.com" },
+  { section: "OUR_TEAM", key: "member4Email", value: "anisa@rukastudio.com" },
   { section: "OUR_TEAM", key: "member4Visible", value: "false" },
 
   // ── TESTIMONIAL ───────────────────────────────────────────────────────────
@@ -91,13 +103,21 @@ const DEFAULT_CONTENT = [
   { section: "PORTFOLIO", key: "sectionTitle", value: "Karya Terpilih" },
   { section: "PORTFOLIO", key: "sectionDescription", value: "Setiap karya adalah representasi dari komitmen kami terhadap kualitas, fungsi, dan keindahan." },
 
-  // ── CONTACT ───────────────────────────────────────────────────────────────
-  { section: "CONTACT", key: "address", value: "Jl. Senopati No. 45, Jakarta Selatan" },
-  { section: "CONTACT", key: "email", value: "hello@rukastudio.com" },
-  { section: "CONTACT", key: "whatsappNumber", value: "6281234567890" },
-  { section: "CONTACT", key: "whatsappMessage", value: "Halo Ruka Studio, saya ingin konsultasi proyek." },
-  { section: "CONTACT", key: "instagram", value: "https://instagram.com/rukastudio" },
-  { section: "CONTACT", key: "linkedin", value: "https://linkedin.com/company/rukastudio" },
+  // ── FOOTER ────────────────────────────────────────────────────────────────
+  { section: "FOOTER", key: "footerTitle", value: "Wujudkan visi Anda sekarang." },
+  { section: "FOOTER", key: "footerDesc", value: "Kami siap mendengarkan. Diskusikan ide awal Anda bersama tim arsitek kami." },
+  { section: "FOOTER", key: "footerButton", value: "Diskusikan Bersama Kami" },
+  { section: "FOOTER", key: "footerImage", value: "/cad-footer-bg.png" },
+  { section: "FOOTER", key: "email", value: "hello@rukastudio.com" },
+  { section: "FOOTER", key: "whatsappNumber", value: "6281234567890" },
+  { section: "FOOTER", key: "whatsappMessage", value: "Halo Ruka Studio, saya ingin konsultasi proyek." },
+  { section: "FOOTER", key: "instagram", value: "https://instagram.com/rukastudio" },
+  { section: "FOOTER", key: "linkedin", value: "https://linkedin.com/company/rukastudio" },
+
+  // ── PHILOSOPHY ────────────────────────────────────────────────────────────
+  { section: "PHILOSOPHY", key: "philosophyEyebrow", value: `{"id":"Filosofi Desain","en":"Design Philosophy"}` },
+  { section: "PHILOSOPHY", key: "philosophyTitle", value: `{"id":"Merancang Ruang untuk Kehidupan yang Sebenarnya.","en":"Designing Spaces, Building Homes."}` },
+  { section: "PHILOSOPHY", key: "philosophyDesc", value: `{"id":"Kami percaya bahwa rumah yang baik bukan sekadar bangunan. Ini tentang bagaimana cahaya alami, material yang jujur, dan tata ruang yang cerdas menyatu untuk membuat hidup Anda lebih baik.","en":"We believe a great home is more than just a building. It's about how natural light, honest materials, and smart design come together to make daily life better."}` },
 ] as const;
 
 async function main() {

@@ -15,7 +15,7 @@ export async function getPortfolioItems() {
   }
 }
 
-export async function createPortfolioItem(data: { title: string; projectType?: string | null; imageUrl: string; description?: string | null }) {
+export async function createPortfolioItem(data: { title: string; projectType?: string | null; imageUrl: string; description?: string | null; detailImagesJson?: string | null }) {
   try {
     const item = await prisma.lpPortfolioItem.create({
       data: {
@@ -33,7 +33,7 @@ export async function createPortfolioItem(data: { title: string; projectType?: s
   }
 }
 
-export async function updatePortfolioItem(id: string, data: { title?: string; projectType?: string | null; imageUrl?: string; description?: string | null }) {
+export async function updatePortfolioItem(id: string, data: { title?: string; projectType?: string | null; imageUrl?: string; description?: string | null; detailImagesJson?: string | null }) {
   try {
     const item = await prisma.lpPortfolioItem.update({
       where: { id },

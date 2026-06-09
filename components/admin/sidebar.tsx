@@ -12,12 +12,14 @@ import {
   LogOut,
   Menu,
   X,
+  FileText,
 } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Proyek", href: "/admin/projects", icon: FolderKanban },
   { label: "Konten Web", href: "/admin/content", icon: LayoutTemplate },
+  { label: "Brief Klien", href: "/admin/briefs", icon: FileText },
 ];
 
 export function AdminSidebar({ role }: { role?: string }) {

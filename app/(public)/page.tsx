@@ -8,6 +8,8 @@ export const metadata = {
   description: "Setiap proyek lahir dari sebuah intensi sederhana: Menciptakan ruang yang presisi, elegan, dan bertahan lama.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   // Fetch dynamic content map
   const contentResult = await getAllContentMap();
