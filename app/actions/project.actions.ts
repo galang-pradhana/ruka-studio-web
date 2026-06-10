@@ -102,7 +102,7 @@ export async function saveProject(prevState: any, formData: FormData) {
       });
     }
 
-    revalidatePath("/admin/projects");
+    revalidatePath("/rs-workspace/projects");
     revalidatePath("/"); // Revalidate landing page
     
     return { success: true };
@@ -118,7 +118,7 @@ export async function deleteProject(id: string) {
       where: { id }
     });
     
-    revalidatePath("/admin/projects");
+    revalidatePath("/rs-workspace/projects");
     revalidatePath("/");
     
     return { success: true };

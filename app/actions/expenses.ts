@@ -41,7 +41,7 @@ export async function addExpense(data: {
       },
     });
 
-    revalidatePath(`/admin/projects/${data.projectId}`);
+    revalidatePath(`/rs-workspace/projects/${data.projectId}`);
     return { data: expense };
   } catch (error: any) {
     return { error: error.message || "Gagal menambahkan pengeluaran" };
@@ -53,7 +53,7 @@ export async function deleteExpense(expenseId: string, projectId: string) {
     await prisma.projectExpense.delete({
       where: { id: expenseId },
     });
-    revalidatePath(`/admin/projects/${projectId}`);
+    revalidatePath(`/rs-workspace/projects/${projectId}`);
     return { success: true };
   } catch (error: any) {
     return { error: "Gagal menghapus pengeluaran" };

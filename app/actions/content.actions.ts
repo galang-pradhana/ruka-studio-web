@@ -81,7 +81,7 @@ export async function saveSectionContent(section: LpSection, data: Record<string
 
     await prisma.$transaction(operations);
     
-    revalidatePath("/admin/content");
+    revalidatePath("/rs-workspace/content");
     revalidatePath("/");
     
     return { success: true };

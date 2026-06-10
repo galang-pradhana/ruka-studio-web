@@ -64,5 +64,5 @@ export async function changePassword(prevState: any, formData: FormData) {
   }
 
   // Redirect harus dilakukan di luar blok try/catch untuk Next.js Server Actions
-  redirect("/admin");
+  redirect("/rs-workspace");
 }

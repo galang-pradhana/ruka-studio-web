@@ -34,7 +34,7 @@ export async function createProject(data: CreateProjectInput) {
       },
     });
 
-    revalidatePath("/admin/projects");
+    revalidatePath("/rs-workspace/projects");
     return { success: true, data: project };
   } catch (error) {
     console.error("Failed to create project:", error);
@@ -138,7 +138,7 @@ export async function deleteProject(id: string) {
       where: { id },
     });
 
-    revalidatePath("/admin/projects");
+    revalidatePath("/rs-workspace/projects");
     return { success: true };
   } catch (error) {
     console.error("Failed to delete project:", error);
@@ -187,8 +187,8 @@ export async function updateProject(
       data: updateData,
     });
 
-    revalidatePath("/admin/projects");
-    revalidatePath(`/admin/projects/${id}`);
+    revalidatePath("/rs-workspace/projects");
+    revalidatePath(`/rs-workspace/projects/${id}`);
     return { success: true, data: project };
   } catch (error) {
     console.error("Failed to update project:", error);

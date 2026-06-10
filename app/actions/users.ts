@@ -73,7 +73,7 @@ export async function createUser(data: {
       },
     });
 
-    revalidatePath("/admin/users");
+    revalidatePath("/rs-workspace/users");
     return { success: true, data: { id: user.id, name: user.name, email: user.email } };
   } catch (error) {
     console.error("Failed to create user:", error);
@@ -92,7 +92,7 @@ export async function updateUserRole(userId: string, role: "OWNER" | "ADMIN" | "
     }
 
     await prisma.user.update({ where: { id: userId }, data: { role } });
-    revalidatePath("/admin/users");
+    revalidatePath("/rs-workspace/users");
     return { success: true };
   } catch (error) {
     return { error: "Gagal mengubah role user." };
@@ -110,7 +110,7 @@ export async function toggleUserActive(userId: string, isActive: boolean) {
     }
 
     await prisma.user.update({ where: { id: userId }, data: { isActive } });
-    revalidatePath("/admin/users");
+    revalidatePath("/rs-workspace/users");
     return { success: true };
   } catch (error) {
     return { error: "Gagal mengubah status user." };
@@ -132,7 +132,7 @@ export async function resetUserPassword(userId: string, newPassword: string) {
       where: { id: userId },
       data: { passwordHash, mustChangePassword: true },
     });
-    revalidatePath("/admin/users");
+    revalidatePath("/rs-workspace/users");
     return { success: true };
   } catch (error) {
     return { error: "Gagal mereset password." };

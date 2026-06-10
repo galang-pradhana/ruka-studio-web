@@ -7,7 +7,7 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig: NextAuthConfig = {
   pages: {
-    signIn: "/login",
+    signIn: "/rs-access",
   },
   session: {
     strategy: "jwt",
@@ -15,11 +15,11 @@ export const authConfig: NextAuthConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isAdminRoute = nextUrl.pathname.startsWith("/admin");
-      const isChangePasswordRoute = nextUrl.pathname === "/admin/change-password";
+      const isAdminRoute = nextUrl.pathname.startsWith("/rs-workspace");
+      const isChangePasswordRoute = nextUrl.pathname === "/rs-workspace/change-password";
       
       if (isAdminRoute && !isLoggedIn) {
-        const loginUrl = new URL("/login", nextUrl.origin);
+        const loginUrl = new URL("/rs-access", nextUrl.origin);
         loginUrl.searchParams.set("callbackUrl", nextUrl.href);
         return Response.redirect(loginUrl);
       }
@@ -27,13 +27,13 @@ export const authConfig: NextAuthConfig = {
       // If user is logged in, but must change password
       if (isLoggedIn && (auth.user as any).mustChangePassword) {
         if (isAdminRoute && !isChangePasswordRoute) {
-          return Response.redirect(new URL("/admin/change-password", nextUrl.origin));
+          return Response.redirect(new URL("/rs-workspace/change-password", nextUrl.origin));
         }
       }
 
-      // If user is logged in, doesn't need to change password, but tries to access /admin/change-password
+      // If user is logged in, doesn't need to change password, but tries to access /rs-workspace/change-password
       if (isLoggedIn && !(auth.user as any).mustChangePassword && isChangePasswordRoute) {
-        return Response.redirect(new URL("/admin", nextUrl.origin));
+        return Response.redirect(new URL("/rs-workspace", nextUrl.origin));
       }
 
       return true;

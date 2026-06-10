@@ -19,7 +19,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     : "Nilai belum diatur";
 
   return (
-    <Link href={`/admin/projects/${project.id}`} className="block relative group">
+    <Link href={`/rs-workspace/projects/${project.id}`} className="block relative group">
       <div className={`relative h-full flex flex-col p-6 rounded-none bg-card overflow-hidden transition-all duration-300 ${isActive ? 'shadow-sm' : ''} hover:scale-[1.02]`}>
         
         {isActive && (

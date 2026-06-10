@@ -114,7 +114,7 @@ export default async function ProjectsPage() {
                     <TableCell className="align-middle">
                       <div>
                         <Link 
-                          href={`/admin/projects/${project.id}`} 
+                          href={`/rs-workspace/projects/${project.id}`} 
                           className="font-medium text-[#1A2530] hover:text-[#1B3B5A] hover:underline block text-[15px]"
                         >
                           {project.name}
@@ -158,7 +158,7 @@ export default async function ProjectsPage() {
                     </TableCell>
                     
                     <TableCell className="align-middle text-right space-x-2">
-                      <Link href={`/admin/projects/${project.id}`}>
+                      <Link href={`/rs-workspace/projects/${project.id}`}>
                         <Button variant="outline" size="sm" className="rounded-none h-8 px-2 border-gray-200 hover:bg-gray-50 hover:text-[#1A2530]">
                           <Eye className="w-4 h-4" />
                         </Button>

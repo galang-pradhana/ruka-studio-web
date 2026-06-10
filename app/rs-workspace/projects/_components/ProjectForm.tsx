@@ -83,7 +83,7 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectData
         }
         setIsPending(false);
       } else {
-        router.push("/admin/projects");
+        router.push("/rs-workspace/projects");
         router.refresh();
       }
     } catch (err: any) {

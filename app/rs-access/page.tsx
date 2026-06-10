@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/rs-workspace";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,13 +27,25 @@ export default function LoginPage() {
       });
 
       if (result?.error) {
-        setError("Email atau password tidak valid. Coba lagi.");
+        // Handle rate limit error from NextAuth
+        if (result.error.includes("TOO_MANY_ATTEMPTS")) {
+          const minutes = result.error.split(":")[1] || "15";
+          setError(`Terlalu banyak percobaan gagal. Coba lagi dalam ${minutes} menit.`);
+        } else {
+          setError("Email atau password tidak valid. Coba lagi.");
+        }
       } else {
         router.push(callbackUrl);
         router.refresh();
       }
-    } catch {
-      setError("Terjadi kesalahan. Coba beberapa saat lagi.");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "";
+      if (msg.includes("TOO_MANY_ATTEMPTS")) {
+        const minutes = msg.split(":")[1] || "15";
+        setError(`Terlalu banyak percobaan gagal. Coba lagi dalam ${minutes} menit.`);
+      } else {
+        setError("Terjadi kesalahan. Coba beberapa saat lagi.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -227,16 +239,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Back to landing */}
-        <div className="mt-8 text-center">
-          <a
-            href="/"
-            style={{ fontSize: "12px", color: "#6B6B6B", letterSpacing: "0.02em" }}
-            className="hover:underline cursor-pointer transition-colors duration-150"
-          >
-            ← Kembali ke halaman utama
-          </a>
-        </div>
+
       </div>
     </div>
   );

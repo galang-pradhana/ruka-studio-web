@@ -10,7 +10,7 @@ export default async function AdminLayout({
   const session = await auth();
 
   if (!session) {
-    redirect('/login');
+    redirect('/rs-access');
   }
 
   return (
@@ -19,11 +19,11 @@ export default async function AdminLayout({
       <aside className="w-64 bg-card border-r border-border p-6 hidden md:block">
         <h2 className="text-xl font-bold mb-8 text-foreground tracking-tight">RUKA STUDIO</h2>
         <nav className="space-y-2">
-          <Link href="/admin" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Dashboard</Link>
-          <Link href="/admin/projects" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Proyek</Link>
-          <Link href="/admin/content" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Konten Web</Link>
+          <Link href="/rs-workspace" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Dashboard</Link>
+          <Link href="/rs-workspace/projects" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Proyek</Link>
+          <Link href="/rs-workspace/content" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Konten Web</Link>
           {session?.user?.role === 'OWNER' && (
-            <Link href="/admin/users" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Pengaturan User</Link>
+            <Link href="/rs-workspace/users" className="block px-4 py-2 hover:bg-secondary rounded-none font-medium text-sm text-foreground transition-colors">Pengaturan User</Link>
           )}
         </nav>
       </aside>

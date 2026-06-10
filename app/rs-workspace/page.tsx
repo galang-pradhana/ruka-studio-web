@@ -109,7 +109,7 @@ export default async function AdminDashboardPage() {
             Proyek Terbaru
           </h2>
           <Link
-            href="/admin/projects"
+            href="/rs-workspace/projects"
             className="cursor-pointer hover:underline"
             style={{ fontSize: "12px", color: "#1B3B5A", fontWeight: 600 }}
           >

@@ -1,40 +1,40 @@
-import { getUsers } from "@/app/actions/users";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { UserManagementClient } from "./UserManagementClient";
+import { getProjectBriefs } from "@/app/actions/brief.actions";
+import { BriefsManagementClient } from "./BriefsManagementClient";
 
 export const metadata = {
-  title: "Manajemen User | Ruka Studio Admin",
+  title: "Brief Klien | Ruka Studio Admin",
 };
 
-export default async function UsersPage() {
+export default async function BriefsPage() {
   const session = await auth();
 
-  if (session?.user?.role !== "OWNER") {
-    redirect("/admin");
+  if (!session || (session.user.role !== "OWNER" && session.user.role !== "ADMIN")) {
+    redirect("/rs-access");
   }
 
-  const { data: users, error } = await getUsers();
+  const { data: briefs, error } = await getProjectBriefs();
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-[#1A2530] tracking-wide" style={{ fontFamily: "var(--font-montserrat, sans-serif)" }}>
-            Manajemen User
+            Brief Klien
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            Kelola akses dan hak pengguna sistem. Hanya OWNER yang dapat mengakses halaman ini.
+            Kelola database dan kiriman brief perencanaan proyek dari calon klien.
           </p>
         </div>
       </div>
 
       {error ? (
-        <div className="bg-red-50 text-red-600 p-4 border border-red-100 text-sm rounded">
+        <div className="bg-red-50 text-red-600 p-4 border border-red-100 text-sm">
           {error}
         </div>
       ) : (
-        <UserManagementClient users={users || []} currentUserId={session?.user?.id || ""} />
+        <BriefsManagementClient initialBriefs={briefs || []} />
       )}
     </div>
   );

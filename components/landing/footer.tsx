@@ -162,7 +162,6 @@ export function LandingFooter({ data = {} }: { data?: Record<string, string> }) 
           <div className="font-mono text-[9px] text-[#0B2240]/40 tracking-wider text-center md:text-right select-none leading-relaxed flex flex-col items-center md:items-end gap-1.5">
             <span>© {currentYear} RUKA STUDIO. ALL RIGHTS RESERVED.</span>
             <span className="text-[#A4855C]/75 font-semibold">DIGITAL ARCHITECTURAL CAD PLAN S-04 // ID72a9</span>
-            <a href="/login" className="text-[#0B2240]/30 hover:text-[#A4855C] transition-colors mt-2">ADMIN AREA</a>
           </div>
         </div>
       </div>

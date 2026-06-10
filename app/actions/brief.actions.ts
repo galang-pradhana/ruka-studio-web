@@ -33,7 +33,7 @@ export async function createProjectBrief(data: {
       },
     });
 
-    revalidatePath("/admin/briefs");
+    revalidatePath("/rs-workspace/briefs");
     return { success: true, data: brief };
   } catch (error) {
     console.error("Failed to create project brief:", error);
@@ -72,7 +72,7 @@ export async function deleteProjectBrief(id: string) {
       where: { id },
     });
 
-    revalidatePath("/admin/briefs");
+    revalidatePath("/rs-workspace/briefs");
     return { success: true };
   } catch (error) {
     console.error("Failed to delete project brief:", error);

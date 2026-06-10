@@ -8,5 +8,5 @@ import { authConfig } from "@/lib/auth.config";
 export default NextAuth(authConfig).auth;
 
 export const config = {
-  matcher: ["/admin/:path*", "/login"],
+  matcher: ["/rs-workspace/:path*", "/rs-access"],
 };

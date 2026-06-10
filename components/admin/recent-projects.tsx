@@ -122,7 +122,7 @@ export async function RecentProjects() {
                 >
                   <td style={{ padding: "14px 16px" }}>
                     <Link
-                      href={`/admin/projects/${project.id}`}
+                      href={`/rs-workspace/projects/${project.id}`}
                       className="cursor-pointer hover:underline"
                     >
                       <div

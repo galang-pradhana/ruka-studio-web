@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { label: "Proyek", href: "/admin/projects", icon: FolderKanban },
-  { label: "Konten Web", href: "/admin/content", icon: LayoutTemplate },
-  { label: "Brief Klien", href: "/admin/briefs", icon: FileText },
+  { label: "Dashboard", href: "/rs-workspace", icon: LayoutDashboard },
+  { label: "Proyek", href: "/rs-workspace/projects", icon: FolderKanban },
+  { label: "Konten Web", href: "/rs-workspace/content", icon: LayoutTemplate },
+  { label: "Brief Klien", href: "/rs-workspace/briefs", icon: FileText },
 ];
 
 export function AdminSidebar({ role }: { role?: string }) {
@@ -28,7 +28,7 @@ export function AdminSidebar({ role }: { role?: string }) {
   const isOwner = role === "OWNER";
 
   const isActive = (href: string) => {
-    if (href === "/admin") return pathname === "/admin";
+    if (href === "/rs-workspace") return pathname === "/rs-workspace";
     return pathname.startsWith(href);
   };
 
@@ -120,10 +120,10 @@ export function AdminSidebar({ role }: { role?: string }) {
 
         {/* Menu khusus OWNER */}
         {isOwner && (() => {
-          const active = pathname.startsWith("/admin/users");
+          const active = pathname.startsWith("/rs-workspace/users");
           return (
             <Link
-              href="/admin/users"
+              href="/rs-workspace/users"
               onClick={() => setMobileOpen(false)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-none cursor-pointer transition-colors duration-150 group"
               style={{
@@ -154,7 +154,7 @@ export function AdminSidebar({ role }: { role?: string }) {
       {/* Footer: Logout */}
       <div className="p-3" style={{ borderTop: "1px solid #E8E2DD" }}>
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
+          onClick={() => signOut({ callbackUrl: "/rs-access" })}
           className="w-full flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors duration-150 rounded-none"
           style={{
             backgroundColor: "transparent",

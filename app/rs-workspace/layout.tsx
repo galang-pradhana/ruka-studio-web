@@ -14,7 +14,7 @@ export default async function AdminLayout({
   const session = await auth();
 
   if (!session) {
-    redirect("/login");
+    redirect("/rs-access");
   }
 
   return (

@@ -23,7 +23,7 @@ export async function createPortfolioItem(data: { title: string; projectType?: s
       },
     });
 
-    revalidatePath("/admin/content");
+    revalidatePath("/rs-workspace/content");
     revalidatePath("/");
     
     return { success: true, data: item };
@@ -40,7 +40,7 @@ export async function updatePortfolioItem(id: string, data: { title?: string; pr
       data,
     });
 
-    revalidatePath("/admin/content");
+    revalidatePath("/rs-workspace/content");
     revalidatePath("/");
     
     return { success: true, data: item };
@@ -56,7 +56,7 @@ export async function deletePortfolioItem(id: string) {
       where: { id },
     });
 
-    revalidatePath("/admin/content");
+    revalidatePath("/rs-workspace/content");
     revalidatePath("/");
     
     return { success: true };

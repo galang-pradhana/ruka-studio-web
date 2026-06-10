@@ -19,7 +19,7 @@ export async function addProjectTerm(data: CreateTermInput) {
       },
     });
 
-    revalidatePath(`/admin/projects/${data.projectId}`);
+    revalidatePath(`/rs-workspace/projects/${data.projectId}`);
     return { success: true, data: term };
   } catch (error) {
     console.error("Failed to add project term:", error);
@@ -42,7 +42,7 @@ export async function updateTermStatus(termId: string, projectId: string, status
       data: updateData,
     });
 
-    revalidatePath(`/admin/projects/${projectId}`);
+    revalidatePath(`/rs-workspace/projects/${projectId}`);
     return { success: true, data: term };
   } catch (error) {
     console.error("Failed to update term status:", error);
